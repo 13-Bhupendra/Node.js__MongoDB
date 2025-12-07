@@ -10,18 +10,41 @@ const connectMongoDB = async ()=> {
    return client.db("users");
 }
 
-// create a data (Insert Data)
-const addUser = async ()=>{
+
+// get / read data
+export const getUser = async ()=>{
     const db = await connectMongoDB();
-    const result = await db.collection("users").insertOne({
-        name : "John",
-        email : "www.john@gmail.com",
-        number : 7887471030,
-        gender : 'male'
-    })
-    console.log("user Inserted : " , result.insertedId);
+    const users = await db.collection("users").find().toArray();
+    console.log("Users Data : " , users)
+    return users;
 }
 
-// getUser
+// create a data (Insert Data)
+export const addUser = async (users)=>{
+    const db = await connectMongoDB();
+    const result = await db.collection("users").insertOne(users)
+    console.log("user Inserted : " , result.insertedId);
+    return result;
+}
 
-addUser()
+// delete data 
+export const removeData = async (name)=>{
+    const db = await connectMongoDB();
+    const result = await db.collection("users").deleteOne({name : name});
+    console.log("Delete data" , result.deletedCount)
+    return result;
+}
+
+// update data
+export const updateData = async (name , newData)=>{
+    const db = await connectMongoDB();
+    const result = await db.collection("users").updateOne(
+        {name : name},
+        {$set : newData}
+    )
+    console.log("Update count" , result.modifiedCount);
+    return result;
+}
+
+
+// getUser()
