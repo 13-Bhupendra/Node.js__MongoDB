@@ -24,7 +24,6 @@ This backend provides full CRUD operations, logging, environment configuration, 
 
 - Add new books  
 - Get all books  
-- Get a specific book by ID  
 - Update book details  
 - Delete existing books  
 - Logging using custom middleware  
@@ -38,7 +37,7 @@ This backend provides full CRUD operations, logging, environment configuration, 
 ## 📦 Prerequisites
 
 - Node.js v18+  
-- MongoDB (Local or Atlas)  
+- MongoDB + Mongoose ODM  (Local or Atlas)  
 - npm or yarn  
 
 ---
