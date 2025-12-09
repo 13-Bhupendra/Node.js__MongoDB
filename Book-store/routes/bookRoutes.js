@@ -1,3 +1,5 @@
+/// routes / bookRoutes
+
 import express from "express";
 import {getBooksData , addBook, removeBook, updateData} from "../controllers/bookController.js";
 

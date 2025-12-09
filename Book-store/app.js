@@ -1,3 +1,5 @@
+// app.js
+
 import express from "express";
 import book_router from "./routes/bookRoutes.js"
 import { connectDB } from "./config/db.js";
