@@ -1,0 +1,27 @@
+.navbarContent
+{
+    background-color: var(--Bgdark);
+    box-shadow:var(--shadow);
+
+}
+.logo span
+{
+    font-family: var(--font);
+}
+.menuList ul li 
+{
+    list-style: none;
+    font-size: 18px;
+    font-family: var(--fontTwo);
+    color: white;
+    text-decoration: none;
+}
+.menuList ul a
+{
+    text-decoration: none;
+}
+
+
+
+
+/* sidebar css */

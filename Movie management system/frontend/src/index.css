@@ -1,0 +1,42 @@
+*
+{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+body
+{
+    background-color: #08080C;
+}
+:root{
+    --Bgdark : #212132;
+    --fontColor : #D2FF27;
+    --font : "Science Gothic", sans-serif;
+    --fontTwo : "Josefin Sans", sans-serif;
+    --shadow :  0 0 20px 5px rgba(117, 201, 28, 0.4);
+}
+
+
+
+
+/*Button*/
+.btn button
+{
+    height: 40px;
+    width: 120px;
+    background: #D2FF27;
+    background: linear-gradient(90deg,rgba(210, 255, 39, 1) 0%, rgba(150, 235, 38, 1) 50%, rgba(97, 235, 38, 1) 100%);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+
+     transition: all 0.4s ease-in-out;
+}
+.btn button:hover
+{
+    background: #61EB26;
+    background: linear-gradient(90deg, rgba(97, 235, 38, 1) 0%, rgba(150, 235, 38, 1) 50%, rgba(210, 255, 39, 1) 100%);
+    transform: scale(1.05);
+    font-weight: bold;
+
+}

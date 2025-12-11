@@ -1,9 +1,12 @@
 import React from 'react'
+import Navbar from './components/Navbar'
+import AllRoutes from './routes/AllRoutes'
 
 const App = () => {
   return (
     <div>
-      <h1>hello worldc</h1>
+      <Navbar />
+      <AllRoutes />
     </div>
   )
 }
