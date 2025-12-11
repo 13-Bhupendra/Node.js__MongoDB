@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongodb": "^7.0.0",
+    "mongoose": "^9.0.1",
+    "multer": "^2.0.2"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node app.js"
+  }
+}
