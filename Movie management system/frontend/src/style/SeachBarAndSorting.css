@@ -1,0 +1,87 @@
+.searchingSortingContainer h3
+{
+    font-size: 40px;
+    font-family: var(--font);
+    color: white;
+}
+.searchingSortingContainer p 
+{
+    color: var(--fontColorTwo);
+    font-size: 18px;
+}
+.searchSortingContent .searchBar 
+{
+    height: 55px;
+    width: 83% !important;
+}
+.searchSortingContent .searchBar input
+{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+     background: rgba(33, 33, 50, 0.35); 
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    padding: 10px;
+    color: var(--fontColorTwo);
+}
+.searchSortingContent .searchBar input::placeholder
+{
+    color: var(--fontColorTwo);
+}
+.searchSortingContent .sorting 
+{
+    height: 55px;
+    width: 15%;
+}
+.searchSortingContent .sorting select 
+{
+    height:100%;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+     background: rgba(33, 33, 50, 0.35); 
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    padding: 10px;
+    color: var(--fontColorTwo);   
+}
+.searchSortingContent .sorting select option {
+    background: rgba(33, 33, 50, 0.85);
+    color: white;
+    padding: 10px;
+    border: none;
+}
+
+.searchSortingContent .sorting select option:hover {
+    background: rgba(210, 255, 39, 0.25);
+    color: white;
+}
+
+.searchSortingContent .sorting select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.searchSortingContent .sorting {
+    position: relative;
+}
+
+.searchSortingContent .sorting::after {
+    content: "▼";
+    font-size: 12px;
+    color: var(--fontColorTwo);
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}

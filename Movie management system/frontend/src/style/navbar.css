@@ -1,8 +1,16 @@
+.navContainer
+{
+  position: sticky;
+  top: 0%;
+  z-index: 999;
+}
 .navbarContent
 {
-    background-color: var(--Bgdark);
-    box-shadow:var(--shadow);
-
+    background: rgba(33, 33, 50, 0.35); 
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 .logo span
 {
@@ -13,7 +21,7 @@
     list-style: none;
     font-size: 18px;
     font-family: var(--fontTwo);
-    color: white;
+    color: var(--fontColorTwo);
     text-decoration: none;
 }
 .menuList ul a
@@ -24,4 +32,101 @@
 
 
 
-/* sidebar css */
+/* Mobile Toggler */
+.toggler {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+}
+
+.toggler-line {
+  width: 28px;
+  height: 3px;
+  background: white;
+  border-radius: 5px;
+}
+
+/* Hide toggler on desktop */
+@media (min-width: 768px) {
+  .toggler {
+    display: none;
+  }
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0.5,0.9);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 98;
+}
+
+.sidebar-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -102%;
+  height: 100%;
+  width: 100%;
+  background: rgba(33, 33, 50, 0.35); 
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  padding: 20px;
+  transition: 0.55s ease-in-out;
+  z-index: 1000;
+}
+
+.sidebar-open {
+  left: 0;
+}
+
+.close-btn {
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  float: right;
+}
+
+.sidebar-menu {
+  margin-top: 40px;
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  padding: 12px 0;
+  border-bottom: 1px solid #333;
+}
+
+.sidebar-menu li a {
+  color: white;
+  font-size: 18px;
+  font-family: var(--fontTwo);
+  text-decoration: none;
+}
+
+/* Sidebar Profile Button */
+.sidebar-login-btn {
+  margin-top: 25px;
+  width: 100%;
+  padding: 10px;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}

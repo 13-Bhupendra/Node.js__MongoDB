@@ -1,0 +1,57 @@
+.heroSectionContainer {
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url("../assets/bg.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.heroSectionContent {
+    text-align: center;
+}
+.headingSize {
+    font-family: var(--font);
+    font-size: clamp(40px, 8vw, 100px);
+    color: white;
+}
+
+.paraSize {
+    color: var(--fontColorTwo);
+    font-family: montserrat;
+    font-size: clamp(14px, 2vw, 22px);
+    line-height: 1.5;
+}
+
+.iconSize {
+    color: #d2ff27;
+    font-size: clamp(50px, 10vw, 90px);
+    animation: pop 1s ease-out;
+}
+
+.GetStartBtn button {
+    height: 55px;
+    width: 150px;
+    background: linear-gradient(90deg, rgba(210, 255, 39, 1) 0%, rgba(150, 235, 38, 1) 50%, rgba(97, 235, 38, 1) 100%);
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+}
+
+.GetStartBtn button:hover {
+    background: linear-gradient(90deg, rgba(97, 235, 38, 1) 0%, rgba(150, 235, 38, 1) 50%, rgba(210, 255, 39, 1) 100%);
+    transform: scale(1.05);
+    font-weight: bold;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.6); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}

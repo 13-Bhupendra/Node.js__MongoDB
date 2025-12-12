@@ -1,9 +1,10 @@
 import React from 'react'
+import SeachBarAndSorting from '../components/SeachBarAndSorting'
 
 const Movies = () => {
   return (
     <div>
-     <h1 className='text-light'> Movies page</h1>
+      <SeachBarAndSorting />
     </div>
   )
 }
