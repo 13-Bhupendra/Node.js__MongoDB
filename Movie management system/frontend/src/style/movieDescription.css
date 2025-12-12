@@ -1,0 +1,78 @@
+:root{
+    --Bgdark:#212132;
+    --fontColor:#D2FF27;
+    --fontColorTwo:#94a3b8;
+    --font:"Science Gothic",sans-serif;
+    --fontTwo:"Josefin Sans",sans-serif;
+}
+
+.descriptionPage {
+    color: var(--fontColorTwo);
+    min-height: 100vh;
+    font-family: var(--fontTwo);
+}
+
+.backBtn,
+.editBtn,
+.deleteBtn {
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.05);
+    color: var(--fontColorTwo);
+    backdrop-filter: blur(6px);
+    border-radius: 8px;
+    font-family: var(--font);
+    transition: 0.3s;
+}
+
+.backBtn:hover,
+.editBtn:hover,
+.deleteBtn:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+.glassBox {
+    background: rgba(255,255,255,0.04);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+    backdrop-filter: blur(7px);
+}
+
+.posterImg {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 18px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.45);
+}
+
+.movieTitle {
+    font-family: var(--font);
+    font-size: 40px;
+    color: var(--fontColor);
+}
+
+.metaTag {
+    background: rgba(255,255,255,0.08);
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.10);
+    color: var(--fontColorTwo);
+}
+
+.rating {
+    color: var(--fontColor);
+}
+
+.descriptionText {
+    color: var(--fontColorTwo);
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.keyword {
+    background: rgba(255,255,255,0.10);
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.18);
+    color: var(--fontColorTwo);
+    font-size: 14px;
+}

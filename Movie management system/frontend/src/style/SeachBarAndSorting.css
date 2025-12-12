@@ -12,7 +12,7 @@
 .searchSortingContent .searchBar 
 {
     height: 55px;
-    width: 83% !important;
+    width: 83%;
 }
 .searchSortingContent .searchBar input
 {
@@ -84,4 +84,16 @@
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
+}
+
+
+@media (max-width : 768px) {
+    .searchSortingContent .searchBar 
+    {
+        width: 70%;
+    }
+    .searchSortingContent .sorting 
+    {
+        width: 28%;   
+    }  
 }

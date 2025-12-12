@@ -1,0 +1,89 @@
+.movieCard {
+    height: 400px;
+    width: 100%;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    transform: none;
+    transition: box-shadow 0.4s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+
+.movieCard::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    transform: scale(1);
+    transition: transform 0.6s ease;
+
+    background-image: inherit;
+}
+
+.movieCard:hover::before {
+    transform: scale(1.12);
+}
+
+.movieCard:hover {
+    box-shadow: 0 1px 40px rgba(76, 145, 3, 0.6);
+}
+
+.movieInfo {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 18px;
+    color: white;
+}
+
+.movieInfo h5 {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+}
+
+.ratingBox {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    padding: 6px 12px;
+    border-radius: 50px;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 14px;
+}
+
+
+
+
+.visitOverlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    color: var(--fontColorTwo);
+    font-family: var(--fontTwo);
+    font-size: 18px;
+
+    pointer-events: none; 
+}
+
+.visitOverlay i {
+    font-size: 28px;
+    margin-bottom: 6px;
+}
+
+.movieCard:hover .visitOverlay {
+    opacity: 1;
+}
