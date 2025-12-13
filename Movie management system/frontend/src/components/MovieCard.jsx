@@ -1,41 +1,65 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../style/movieCard.css";
 import { LuSquareArrowOutUpRight } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
-
+import axios from "axios";
 
 const MovieCard = () => {
+  const [data, setData] = useState([]);
+
+  const SERVER = "http://localhost:7000";
+
+  const fetchData = async () => {
+    const res = await axios.get(`${SERVER}/api/get`);
+    setData(res.data.MoviesData || []);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div className="container movieCardContainer mb-5 mt-5">
-      <div className="row movieCardContent d-flex flex-wrap justify-content-between">
-        <NavLink to="/movieDescription" >
-            <div className="col-12 col-sm-6 col-lg-4 col-xl-3">
-            <div
+      <div className="row movieCardContent">
+        {data.map((el, i) => (
+          <div
+            key={i}
+            className="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4"
+          >
+            <NavLink
+              to="/movieDescription"
+              className="text-decoration-none"
+            >
+              <div
                 className="movieCard"
                 style={{
-                backgroundImage: `
-                linear-gradient(to top, rgba(0,0,0,0.98), rgba(0,0,0,0.5)),
-                url("https://i.pinimg.com/736x/8f/0c/81/8f0c8139d840dc28c0cbf745e4409e17.jpg")
-                `,
+                  backgroundImage: `
+                    linear-gradient(to top, rgba(0,0,0,0.98), rgba(0,0,0,0.5)),
+                    url(${SERVER}${el.filePath})
+                  `,
                 }}
-            >
+              >
                 <div className="movieInfo">
-                <h5>Inception</h5>
-                <div className="tags">
-                    <span className="badge bg-primary me-2">Sci-Fi</span>
-                    <span className="year">2010</span>
-                </div>
+                  <h5>{el.movieTitle}</h5>
+                  <div className="tags">
+                    <span className="badge bg-primary me-2">
+                      {el.genre}
+                    </span>
+                    <span className="year">{el.releaseYear}</span>
+                  </div>
                 </div>
 
-                <div className="ratingBox">⭐ 8.8</div>
+                <div className="ratingBox">⭐ {el.rating}</div>
 
                 <div className="visitOverlay">
-                        <i className="fas fa-external-link-alt"></i>
-                        <span>Visit &nbsp;<LuSquareArrowOutUpRight className="mb-1"/></span>
-                    </div>
-            </div>
-            </div>
-        </NavLink>
+                  <span>
+                    Visit <LuSquareArrowOutUpRight className="mb-1" />
+                  </span>
+                </div>
+              </div>
+            </NavLink>
+          </div>
+        ))}
       </div>
     </div>
   );
