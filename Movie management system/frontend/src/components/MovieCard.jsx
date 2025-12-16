@@ -26,6 +26,7 @@ const MovieCard = () => {
             key={i}
             className="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4"
           >
+            {console.log(`${SERVER}${el.filePath}`)}
             <NavLink
               to="/movieDescription"
               className="text-decoration-none"
