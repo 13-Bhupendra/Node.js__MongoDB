@@ -10,6 +10,21 @@ export const fetchData = async (req , res)=>{
     }
 }
 
+//get single movie data 
+export const getSingleMovieData = async (req , res)=> {
+    try {
+        const {id} = req.params
+        const result = await Movies.findById(id);
+        if (!result) {
+            return res.status(404).json({ message: "Movie not found" });
+        }
+        res.status(200).json(result);
+    } catch (error) {
+          res.status(500).json({message : "Data not fetched !" , error : error.message})
+    }
+}
+
+
 // add movie data 
 export const AddMovie = async (req ,res)=>{
     try {

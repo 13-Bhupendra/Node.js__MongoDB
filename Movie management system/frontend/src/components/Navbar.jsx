@@ -11,8 +11,9 @@ const Navbar = () => {
 
   const data = [
     { id: 1, path: "/", text: "Home" },
-    { id: 2, path: "/movies", text: "Movies" },
     { id: 3, path: "/dashboard", text: "Dashboard" },
+    { id: 2, path: "/movies", text: "Movies" },
+    {id : 4 , path: "/addMovie" , text:"Add Movie"}
   ];
 
   return (
