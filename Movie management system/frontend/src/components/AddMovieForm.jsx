@@ -11,6 +11,8 @@ import {
   FaImage,
   FaUpload
 } from "react-icons/fa";
+import { IoCloudDoneSharp } from "react-icons/io5";
+
 
 const AddMovie = () => {
 
@@ -27,11 +29,11 @@ const AddMovie = () => {
         const formData = new FormData()
         formData.append("movieTitle" , movieTitle);
         formData.append("description" , description);
-        formData.append("genre" , genre);
+        formData.append("genre" , JSON.stringify(genre.split(",")));
         formData.append("releaseYear" , releaseYear);
         formData.append("rating" , rating);
         formData.append("duration" , duration);
-        formData.append("keywords" , keywords);
+        formData.append("keywords" , JSON.stringify(keywords.split(",")));
         formData.append("image" , file);
 
         try {
@@ -57,7 +59,6 @@ const AddMovie = () => {
           </p>
 
           <div className="glassForm p-4 mt-5">
-            <form>
               <div className="mb-3">
                 <label className="formLabel mb-2"><FaFilm /> Movie Title</label>
                 <input
@@ -133,15 +134,15 @@ const AddMovie = () => {
                 <label className="formLabel mb-2"><FaImage /> Movie Poster</label>
 
                 <label htmlFor="posterUpload" className="uploadBox">
-                  <FaUpload className="uploadIcon" />
-                  <div>Click to upload poster</div>
+                  {file ? <IoCloudDoneSharp className="uploadIcon" /> : <FaUpload className="uploadIcon" />}
+                  <div>{file ? file.name  :  "Click to upload poster"}</div>
                 </label>
 
                 <input
                   type="file"
                   id="posterUpload"
                   className="hiddenFile"
-                  onChange={(e)=>setMovieTitle(e.target.files[0])}
+                  onChange={(e)=>setFile(e.target.files[0])}
                 />
               </div>
 
@@ -150,7 +151,6 @@ const AddMovie = () => {
                   Add Movie
                 </button>
               </div>
-            </form>
           </div>
 
         </div>

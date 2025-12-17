@@ -1,22 +1,36 @@
 import React, { useEffect, useState } from "react";
 import "../style/movieDescription.css";
-import { useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+
 
 const MovieDescription = () => {
   const [data, setData] = useState(null);
 
+  const navigate = useNavigate();
   const { id } = useParams();
   const SERVER = "http://localhost:7000";
 
+  // Movie data fetched
   const movieData = async () => {
     try {
       const res = await axios.get(`${SERVER}/api/movie/${id}`);
       setData(res.data);
     } catch (error) {
-      console.log("error", error);
+      console.log("error", error.message);
     }
   };
+
+  //Delete data 
+  const removeData = async()=> {
+    try {
+        const res = await axios.delete(`${SERVER}/api/delete/${data.movieTitle}`)
+        alert("data deleted !")
+        navigate("/movies")
+    } catch (error) {
+      console.log("Error : " , error.message );
+    }
+  }
 
   useEffect(() => {
     movieData();
@@ -67,8 +81,10 @@ const MovieDescription = () => {
           </div>
 
           <div className="d-flex gap-3">
-            <button className="btn editBtn px-4 py-2">Edit</button>
-            <button className="btn deleteBtn px-4 py-2">Delete</button>
+            <NavLink to="/editMovie" >  
+              <button className="btn editBtn px-4 py-2">Edit</button>
+            </NavLink>
+            <button className="btn deleteBtn px-4 py-2" onClick={removeData}>Delete</button>
           </div>
         </div>
 

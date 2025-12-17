@@ -6,6 +6,7 @@ import Dashboard from '../pages/Dashboard'
 import Profile from '../pages/Profile'
 import Description from '../pages/Description'
 import AddMovie from '../pages/AddMovie'
+import EditMovieForm from '../components/EditMovieForm'
 
 const AllRoutes = () => {
   return (
@@ -17,6 +18,7 @@ const AllRoutes = () => {
             <Route path='/profile' element={<Profile />} />
             <Route path='/movieDescription/:id' element={<Description />} />
             <Route path='/addMovie' element={<AddMovie />} />
+            <Route path='/editMovie' element={<EditMovieForm />} />
          </Routes>
     </div>
   )

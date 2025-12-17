@@ -3,25 +3,41 @@ import "../style/movieCard.css";
 import { LuSquareArrowOutUpRight } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import Loading from "../components/Loading"
 
 const MovieCard = () => {
   const [data, setData] = useState([]);
+  const [loading , setLoading] = useState(true)
 
   const SERVER = "http://localhost:7000";
 
   const fetchData = async () => {
-    const res = await axios.get(`${SERVER}/api/get`);
-    setData(res.data.MoviesData || []);
+      try {
+        setLoading(true)
+        const res = await axios.get(`${SERVER}/api/get`);
+        setData(res.data.MoviesData || []);
+      } catch (error) {
+        console.log(error)
+        setLoading(true);
+      } finally {
+        setLoading(false)
+
+      }
   };
 
   useEffect(() => {
     fetchData();
   }, []);
 
+    if (loading) {
+    return <Loading />;
+  }
+
+
   return (
     <div className="container movieCardContainer mb-5 mt-5">
       <div className="row movieCardContent">
-        {data.map((el, i) => (
+        { data.map((el, i) => (
           <div
             key={i}
             className="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4"

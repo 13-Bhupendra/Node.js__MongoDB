@@ -7,7 +7,7 @@ const movieSchema = new mongoose.Schema(
     genre: { type: [String], required: true }, 
     releaseYear: { type: Number, required: true },
     rating: { type: Number, min: 0, max: 10 }, 
-    duration: { type: Number }, 
+    duration: { type: Number },   
     keywords: { type: [String] }, 
     fileName: { type: String }, 
     filePath: { type: String }
