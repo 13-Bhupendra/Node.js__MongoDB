@@ -47,7 +47,7 @@ const MovieDescription = () => {
         <div className="d-flex justify-content-between align-items-center mb-4">
           <button
             className="btn backBtn px-4 py-2"
-            onClick={() => history.back()}
+            onClick={() => navigate("/movies  ")}
           >
             ← Back
           </button>
@@ -75,13 +75,11 @@ const MovieDescription = () => {
           </p>
 
           <div className="d-flex flex-wrap gap-2 mb-4">
-            {data.keywords.map((key, i) => (
-              <span className="keyword" key={i}>{key}</span>
-            ))}
+              <span className="keyword">{data.keywords}</span>
           </div>
 
-          <div className="d-flex gap-3">
-            <NavLink to="/editMovie" >  
+          <div className="d-flex gap-3">  
+            <NavLink to={`/editMovie/${data._id}`} >  
               <button className="btn editBtn px-4 py-2">Edit</button>
             </NavLink>
             <button className="btn deleteBtn px-4 py-2" onClick={removeData}>Delete</button>

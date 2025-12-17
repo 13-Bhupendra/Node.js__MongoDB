@@ -18,7 +18,7 @@ const AllRoutes = () => {
             <Route path='/profile' element={<Profile />} />
             <Route path='/movieDescription/:id' element={<Description />} />
             <Route path='/addMovie' element={<AddMovie />} />
-            <Route path='/editMovie' element={<EditMovieForm />} />
+            <Route path='/editMovie/:id' element={<EditMovieForm />} />
          </Routes>
     </div>
   )

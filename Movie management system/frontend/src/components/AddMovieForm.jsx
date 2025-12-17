@@ -29,19 +29,21 @@ const AddMovie = () => {
         const formData = new FormData()
         formData.append("movieTitle" , movieTitle);
         formData.append("description" , description);
-        formData.append("genre" , JSON.stringify(genre.split(",")));
+        formData.append("genre" , genre);
         formData.append("releaseYear" , releaseYear);
         formData.append("rating" , rating);
         formData.append("duration" , duration);
-        formData.append("keywords" , JSON.stringify(keywords.split(",")));
+        formData.append("keywords" ,keywords);
         formData.append("image" , file);
 
         try {
             const res = await axios.post("http://localhost:7000/api/post" , formData)
-            alert("file uploaded !");
+            alert("Data Added successfull !");
         } catch (error) {
-            alert("file not uploaded !");
+            alert("Data not Added  !");
         }
+
+        setMovieTitle("") , setDescription("") , setGenre("") , setDuration(""),setFile(null),setKeywords(""),setReleaseYear(""),setRating("")
 
     }
 
@@ -65,6 +67,7 @@ const AddMovie = () => {
                   type="text"
                   className="form-control glassInput"
                   placeholder="Enter movie title"
+                  value={movieTitle}
                   onChange={(e)=>setMovieTitle(e.target.value)}
                 />
               </div>
@@ -75,6 +78,7 @@ const AddMovie = () => {
                   className="form-control glassInput"
                   rows="4"
                   placeholder="Write movie description"
+                  value={description}
                   onChange={(e)=>setDescription(e.target.value)}
                 ></textarea>
               </div>
@@ -85,6 +89,7 @@ const AddMovie = () => {
                   type="text"
                   className="form-control glassInput"
                   placeholder="Action, Drama, Sci-Fi"
+                  value={genre}
                   onChange={(e)=>setGenre(e.target.value)}
                 />
               </div>
@@ -96,6 +101,7 @@ const AddMovie = () => {
                     type="number"
                     className="form-control glassInput"
                     placeholder="2025"
+                    value={releaseYear}
                     onChange={(e)=>setReleaseYear(e.target.value)}
                   />
                 </div>
@@ -106,6 +112,7 @@ const AddMovie = () => {
                     step="0.1"
                     className="form-control glassInput"
                     placeholder="8.5"
+                    value={rating}
                     onChange={(e)=>setRating(e.target.value)}
                   />
                 </div>
@@ -115,6 +122,7 @@ const AddMovie = () => {
                     type="number"
                     className="form-control glassInput"
                     placeholder="120 min"
+                    value={duration}
                   onChange={(e)=>setDuration(e.target.value)}
                   />
                 </div>
@@ -126,6 +134,7 @@ const AddMovie = () => {
                   type="text"
                   className="form-control glassInput"
                   placeholder="hero, action, thriller"
+                  value={keywords}
                   onChange={(e)=>setKeywords(e.target.value)}
                 />
               </div>

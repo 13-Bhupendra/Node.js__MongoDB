@@ -41,16 +41,17 @@ export const AddMovie = async (req ,res)=>{
 
 //update Movie Data
 export const updateData = async (req , res)=>{
-    const {movieTitle} = req.params
+    const {id} = req.params
     const updatedData = {...req.body};
 
     if (req.file) {
     updatedData.fileName = req.file.filename;
-    updatedData.filePath = req.file.path;
+    // updatedData.filePath = req.file.path;
+     updatedData.filePath = `/uploads/${req.file.filename}`;
     }
 
     try {
-        const result = await Movies.updateOne({movieTitle : movieTitle} , {$set : updatedData})
+        const result = await Movies.findByIdAndUpdate(id , updatedData , {new : true })
         res.status(200).json({message : "Data Updated !" , result})
     } catch (error) {
         res.status(500).json({message : "Data not Updated !" , error : error.message})

@@ -7,6 +7,6 @@ const router =  express.Router();
 router.post("/post" , upload.single("image") , AddMovie);
 router.get("/get" , fetchData);
 router.delete("/delete/:movieTitle" , removeData)
-router.put("/update/:movieTitle" ,upload.single("image") , updateData);
+router.put("/update/:id" ,upload.single("image") , updateData);
 router.get("/movie/:id" , getSingleMovieData);
 export default router;
