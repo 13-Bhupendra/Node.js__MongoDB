@@ -4,13 +4,18 @@ import { LuSquareArrowOutUpRight } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import Loading from "../components/Loading";
+import "../style/SeachBarAndSorting.css"
+
 
 const MovieCard = () => {
+
+  const [ search , setSearch] = useState("")
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const SERVER = "http://localhost:7000";
 
+  //fetch data 
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -24,9 +29,22 @@ const MovieCard = () => {
     }
   };
 
+  // //searchMovie 
+  // const searchMovie = async (value)=> {
+  //   try {
+  //     setLoading(true)
+  //     const res = await axios.get(`${SERVER}/movie/search?movieTitle=${value}`)
+  //     setData(res.data)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }finally {
+  //     setLoading(false)
+  //   }
+  // }
+
   useEffect(() => {
-    fetchData();
-  }, []);
+      fetchData()
+  }, [search]);
 
   if (loading) {
     return <Loading />;
@@ -34,7 +52,26 @@ const MovieCard = () => {
 
   return (
     <div className="container movieCardContainer mb-5 mt-5">
-      <div className="row movieCardContent">
+       <div className='container searchingSortingContainer'>
+        <h3 className='text-center mt-5 pb-1'>Movie <span style={{color:"#d2ff27"}}>Library</span></h3>
+        <p className='text-center '>Browse, search, and manage your entire movie collection in one place</p>
+        
+        <div className="searchSortingContent mt-5 d-flex justify-content-between">
+            <div className="searchBar">
+                <input type="text" placeholder='Search movies....'  value={search} onChange={(e)=> setSearch(e.target.value)}/>
+            </div>
+
+            <div className="sorting">
+                <select name="" id="">
+                    <option value="">All</option>
+                    <option value="">All</option>
+                    <option value="">All</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+      <div className="row movieCardContent mt-5">
         {data.map((el, i) => (
           <div key={i} className="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
             {console.log(`${SERVER}${el.filePath}`)}
