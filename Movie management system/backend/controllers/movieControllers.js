@@ -11,23 +11,23 @@ export const fetchData = async (req , res)=>{
 }
 
 // SEARCH MOVIES
-export const searchMovie = async (req, res) => {
-  try {
-    const { movieTitle } = req.query;
+// export const searchMovie = async (req, res) => {
+//   try {
+//     const { movieTitle } = req.query;
 
-    if (!movieTitle || movieTitle.trim() === "") {
-      return res.status(200).json([]);
-    }
+//     if (!movieTitle || movieTitle.trim() === "") {
+//       return res.status(200).json([]);
+//     }
 
-    const result = await Movies.find({
-      movieTitle: { $regex: movieTitle, $options: "i" },
-    });
+//     const result = await Movies.find({
+//       movieTitle: { $regex: movieTitle, $options: "i" },
+//     });
 
-    res.status(200).json(result);
-  } catch (error) {
-    res.status(500).json({ message: "Search failed" });
-  }
-};
+//     res.status(200).json(result);
+//   } catch (error) {
+//     res.status(500).json({ message: "Search failed" });
+//   }
+// };
 
 
 //get single movie data 

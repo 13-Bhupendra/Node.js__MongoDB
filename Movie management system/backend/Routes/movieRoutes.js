@@ -9,5 +9,5 @@ router.get("/get" , fetchData);
 router.delete("/delete/:movieTitle" , removeData)
 router.put("/update/:id" ,upload.single("image") , updateData);
 router.get("/movie/:id" , getSingleMovieData);
-router.get("/movie/search" , searchMovie)
+// router.get("/movie/search" , searchMovie)
 export default router;
