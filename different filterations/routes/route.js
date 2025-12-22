@@ -16,6 +16,7 @@ const router = express.Router();
 
 router.post("/product/add", post);
 router.get("/products/get", fetchAllData);
+router.get("product/get/:id" , getSingleData)
 
 router.get("/search/name", searchByName);
 router.get("/search/brand", searchByBrand);
