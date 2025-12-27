@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+</head>
+<body>
+    <h1>Sign in / login page</h1>
+    <form id="form">
+        <input id="email" type="email" placeholder="email">
+        <input id="password" type="password" placeholder="password">
+        <button id="submit">submit</button>
+        <p>Create new account ? <a href="/signup" id="signup">Sign Up</a></p>
+    </form>
+
+    <script>
+        const email = document.getElementById("email")
+        const password = document.getElementById("password");
+        const button = document.getElementById("button")
+        const form = document.getElementById("form")
+        const signup =document.getElementById("signup");
+
+        form.addEventListener("click" , async (e)=>{
+
+            e.preventDefault();
+
+            const body = {
+                email : email.value ,
+                password : password.value
+            }
+
+            const res = await fetch("http://localhost:7000/api/signin" , {
+                headers : {"Content-Type": "application/json"},
+                method : "POST",
+                body : JSON.stringify(body)
+            })
+
+            const data = await res.json()
+
+            if(data.success){
+                window.location.href = "/";
+            }
+
+            // fetch("http://localhost:7000/api/signin" , {
+            //     headers : {"Content-Type": "application/json"},
+            //     method : "POST",
+            //     body : JSON.stringify(body)
+            // })
+            // .then((res)=>res.json())
+            // .then((data)=>console.log(data))
+            });
+
+            signup.addEventListener("click" , ()=>{
+                window.location.href = "/signup"
+            })
+    </script>
+</body>
+</html>
