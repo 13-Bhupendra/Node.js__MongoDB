@@ -2,7 +2,7 @@ import { indexFilePath, signinFilePath } from "../server.js";
 
 export const checkAuthReq = (req , res ,next)=>{
     if(req.body){
-        const {email , password} = req.body;
+        const {email , password} = req.body;    
         if(email && password){
             next()
         }
