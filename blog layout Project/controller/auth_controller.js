@@ -2,11 +2,13 @@ import { AuthModel } from "../models/auth_model.js";
 import bcrypt from "bcrypt";
 import { indexFilePath, signinFilePath, signupFilePath } from "../server.js";
 
+/* Signup */
 export const signUp = async (req , res) => {
     try {
-        const {email , password } = req.body;
+        const { username , email , password } = req.body;
         const hashedPassword = await bcrypt.hash(password , 10);
         const user = new  AuthModel({
+            username : username ,
             email : email ,
             password : hashedPassword
         })
@@ -18,6 +20,8 @@ export const signUp = async (req , res) => {
     }
 }
 
+
+/* Signin */
 export const signIn = async (req ,res)=> {
     const {email , password} = req.body;
     const user = await AuthModel.findOne({email : email});
@@ -27,13 +31,15 @@ export const signIn = async (req ,res)=> {
 
     const isMatched = await bcrypt.compare(password , user.password);
     if(isMatched){
-        res.cookie("auth" , true , {httpOnly : true , maxAge : 1000 * 60 *60 * 24})
+        res.cookie("auth" , true , {httpOnly : true , maxAge : 1000 * 60 *60 * 24});
+        res.cookie("username" , user.username , {httpOnly : true , maxAge : 1000 * 60 *60 * 24})
         return res.json({ message: "user signin successfully !!" , success : true });
     }else{
          res.status(400).json({ message: "Password is incorrect !" });
     }
 }
 
+/* get users */
 export const getUsers = async (req ,res )=> {
     try {
             const result = await AuthModel.find();
@@ -43,14 +49,24 @@ export const getUsers = async (req ,res )=> {
     }
 }
 
+/* Home page */
 export const homePage = (req , res)=> {
     res.sendFile(indexFilePath);
 }
 
+/* sign in page */
 export const signInPage = (req , res)=> {
     res.sendFile(signinFilePath);
 }
 
+/* signup page */
 export const signUpPage = (req , res)=> {
     res.sendFile(signupFilePath);
+}
+
+/*sign out */
+export const signOut = async (req , res )=>{
+    res.clearCookie("auth")
+    res.clearCookie("username");
+    res.json({message: "Logged out successfully" });
 }

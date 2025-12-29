@@ -1,39 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tailwind CDN Example</title>
 
-    <!-- 👇 Add this line -->
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gray-100 flex items-center justify-center h-screen">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
 
-    <div class="bg-white p-8 rounded-xl shadow-lg text-center">
-      <h1 class="text-4xl font-bold text-green-600 mb-4">Hello Tailwind!</h1>
-      <p class="text-gray-700">This page is styled using Tailwind CSS CDN.</p>
-      <button class="mt-4 bg-blue-500 hover:bg-gray-400 hover:text-blue-700 font-bold text-white py-2 px-4 rounded-lg">Click Me</button>
+<body class="min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-800 text-gray-100">
+
+  <!-- ================= Navbar ================= -->
+  <header class="flex justify-between items-center px-8 py-4 border-b border-gray-700">
+    <h1 class="text-3xl font-bold">MyBlog</h1>
+
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2">
+        <img
+          src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740&q=80"
+          class="rounded-full w-10 h-10 border-2 border-purple-600">
+        <span class="hidden md:inline">Guest </span>
+        <button class="ml-2 p-1  hover:bg-red-700 rounded-full" onclick="signout()">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+
+      <button onclick="openModal()"
+        class="flex items-center gap-1 px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-full text-white">
+        <i class="fas fa-plus"></i> Add Blog
+      </button>
     </div>
+  </header>
 
-    <div class="columns-3 gap-4">
-  <div>Card 1</div>
-  <div>Card 2</div>
-  <div>Card 3</div>
-</div>
+  <!-- ================= Blog Cards ================= -->
+  <main class="px-8 py-6 grid grid-cols-1 md:grid-cols-3 gap-6" id="card">
 
-<div class="columns-3 gap-4">
-  <div class=" bg-white p-4 mb-4 shadow">
-    Card Content
-  </div>
-    <div class=" bg-white p-4 mb-4 shadow">
-    Card Content
-  </div>
-    <div class="break-inside-avoid bg-white p-4 mb-4 shadow">
-    Card Content
-  </div>
-  
-</div>
+  </main>
 
-  </body>
+  <!-- ================= modal ================= -->
+  <div id="modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-50">
+
+    <div class="w-full max-w-md p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl relative">
+
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-white">Add New Blog</h1>
+        <p class="text-gray-400 text-sm mt-2">Create your blog post</p>
+      </div>
+
+      <form class="space-y-5" id="form">
+
+        <div>
+          <label class="text-gray-400 text-sm">Title</label>
+          <input type="text" placeholder="Blog title" id="title"
+            class="w-full mt-1 px-4 py-3 rounded-lg bg-black/40 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+        </div>
+
+        <div>
+          <label class="text-gray-400 text-sm">Content</label>
+          <textarea rows="4" placeholder="Write your content..." id="content"
+            class="w-full mt-1 px-4 py-3 rounded-lg bg-black/40 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"></textarea>
+        </div>
+
+        <div>
+          <label class="text-gray-400 text-sm">Upload Image</label>
+          <input type="file" id="file"
+            class="w-full mt-1 px-4 py-3 rounded-lg bg-black/40 border border-gray-700 text-gray-400 file:text-white file:bg-purple-600 file:border-0 file:px-4 file:py-2 file:rounded-lg hover:file:bg-purple-700 transition">
+        </div>
+
+        <button type="submit" id="btn"
+          class="w-full py-3 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold hover:opacity-90 hover:scale-[1.01] transition">
+          Publish Blog
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= script ================= -->
+  <script>
+    const modal = document.getElementById("modal")
+    const title = document.getElementById("title")
+    const content = document.getElementById("content")
+    const file = document.getElementById("file");
+    const form = document.getElementById("form")
+    const card = document.getElementById("card");
+
+    form.addEventListener("submit", async (e) => {
+
+      e.preventDefault()
+
+      const formData = new FormData()
+      formData.append("title", title.value);
+      formData.append("content", content.value);
+      formData.append("image", file.files[0]);
+
+
+      const res = await fetch("http://localhost:7000/api/blog", {
+        method: "POST",
+        body: formData
+      })
+
+      // const data = await res.json();
+      // console.log(data);
+      window.location.reload()
+      fetchData()
+      closeModal();
+      
+
+    });
+
+
+    const fetchData = async () => {
+      const res = await fetch("http://localhost:7000/api/blog/get")
+      const data = await res.json()
+
+
+
+      card.innerHTML = "";
+      data.result <= 0
+        ?
+        card.innerHTML = `<h1 class="underline text-2xl md:text-3xl font-bold text-gray-400 mt-20">
+                                          ~ No blogs found. Add your first blog!
+                                         </h1> `
+        :
+        data.result.forEach((el) => {
+          card.innerHTML += ` 
+              <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden shadow-lg flex flex-col">
+              <img src="http://localhost:7000${el.filePath}" alt="Blog 1" class="w-full h-48 object-cover">
+
+              <div class="p-4 flex flex-col flex-1">
+                  <h2 class="text-xl font-bold mb-2">${el.title}</h2>
+                  <p class="text-gray-300 flex-1">${el.content}</p>
+
+                  <div class="flex justify-between items-center mt-4 text-gray-400 text-sm">
+                      <span>🗓 ${el.date} • ${el.time}</span>
+                      <div class="flex items-center gap-2">
+                          <img src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740&q=80" alt="John Doe" class="rounded-full w-6 h-6 border border-purple-500">
+                          <span>${el.username}</span>
+                      </div>
+                  </div>
+
+                  <div class="flex justify-end gap-2 mt-2">
+                      <button class="p-1  hover:bg-red-700 rounded-full text-white text-sm" onclick="removeBlog('${el._id}')">
+                          <i class="fas fa-trash-alt"></i>
+                      </button>
+                  </div>
+              </div>
+          </div>`
+        })
+
+    }
+
+    fetchData()
+
+    const removeBlog = async (id) => {
+
+      const res = await fetch(`http://localhost:7000/api/delete/${id}`, {
+        method: "DELETE"
+      })
+
+      fetchData()
+    }
+
+    const signout = async () => {
+      await fetch("http://localhost:7000/api/signout");
+      window.location.href = "/signin";
+    }
+
+    function openModal() {
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    function closeModal() {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+  </script>
+
+</body>
+
 </html>

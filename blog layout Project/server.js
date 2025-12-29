@@ -4,6 +4,7 @@ import { connectDB } from "./config/db.js";
 import cookieParser from 'cookie-parser'
 import {fileURLToPath } from 'url'
 import path from "path"
+import blog_routers from "./routes/blog_routes.js";
 
 const app = express()
 app.use(express.json());
@@ -19,6 +20,9 @@ export const signupFilePath = path.join(__dirname , "static" , "signup.html")
 
 connectDB()
 app.use("/" , auth_routers);
+app.use("/" , blog_routers);
+
+app.use("/uploads", express.static("uploads"));
 
 app.listen(PORT, ()=> {
     console.log("Server Started Successfully , on the PORT http://localhost:"+PORT);
