@@ -26,7 +26,9 @@ export const addBlog = async (req ,res)=>{
 //get blog
 export const getBlog = async (req ,res)=>{
     try {
-        const result = await BlogModel.find()
+        const username = req.cookies.username;
+
+        const result = await BlogModel.find({username})
         res.status(200).json({message : "Blog fetched !", result} );
     } catch (error) {
         res.status(401).json({message : "Blog not fetched !", error} );
