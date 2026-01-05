@@ -27,6 +27,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+connectDB()
 app.use("/", authRoute);
 
 app.listen(7000 , ()=>{

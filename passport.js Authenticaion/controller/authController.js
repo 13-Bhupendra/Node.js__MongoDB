@@ -13,7 +13,7 @@ export const signup = async (req , res)=>{
 
         res.status(200).json({message : "user registered successfull !" , result});
     } catch (error) {
-        res.status(500).json({message : "user not register !"})
+        res.status(500).json({message : "user not register !" , error})
     }
 }
 

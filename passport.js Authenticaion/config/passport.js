@@ -21,8 +21,8 @@ const localstrategy = new localStrategy(
 
             return done(null, user , {message : "login successfull !"});
         } catch (error) {
-            console.error('Error in LocalStrategy:', err);
-            return done(err);
+            console.error('Error in LocalStrategy:', error);
+            return done(error);
         }
     } 
 )
@@ -33,7 +33,17 @@ passport.serializeUser(async (user , done )=>{
     done(null , user._id);
 })
 
-passport.deserializeUser(async (id , done)=>{
-    const user = await Users.findById(id);
-    done(null, user);
-})
+passport.deserializeUser(async (id, done) => {
+    try {
+        const user = await Users.findById(id);
+
+        if (!user) {
+            return done(null, false);
+        }
+
+        done(null, user);
+    } catch (error) {
+        console.error("Deserialize error:", error);
+        done(error);
+    }
+});
