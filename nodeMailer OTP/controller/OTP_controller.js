@@ -1,6 +1,9 @@
 import OTP from "../model/OTP_Model.js";
 import { generateOtp } from "../utils/OTP_generate.js";
 import { transporter } from "../services/mail_service.js";
+import dotenv from "dotenv"
+
+dotenv.config()
 
 export const sentOtp = async (req, res) => {
   const { email } = req.body;
