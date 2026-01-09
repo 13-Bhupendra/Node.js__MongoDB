@@ -33,7 +33,9 @@
             if(!otpResult.status){
                 return res.status(500).json({otpResult})
             }
-        
+
+            
+                    
             res.json({status : true , message : "OTP sent to email "});
         } catch (error) {
             res.status(500).json({status : false , message: "Signin falied !"});  
@@ -53,10 +55,8 @@
 
     //sign out 
     export const signout = (req , res)=>{
-          res.clearCookie("maintoken", {
-            httpOnly: true,
-            sameSite: "strict",
-        });
+        res.clearCookie("mainToken");
+        res.clearCookie("isAuth")
 
         res.status(200).json({ message: "User signed out successfully" });
     }

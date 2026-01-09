@@ -1,18 +1,4 @@
-body::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background-image: radial-gradient(
-    circle at 50% 50%,
-    #0000 0,
-    #0000 2px,
-    hsl(0 0 4%) 2px
-  );
-  background-size: 8px 8px;
-  --f: blur(1em) brightness(6);
-  animation: hii 10s linear infinite;
-}
+
 
 @keyframes hii {
   0% {
@@ -514,77 +500,293 @@ body {
   color: #ffffff;
 }
 
-/* From Uiverse.io by Vosoone */ 
-.main-container {
+.loader {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30%;
-  width: 30%;
-}
-
-.loader {
+  --color: hsl(0, 0%, 87%);
+  --animation: 2s ease-in-out infinite;
+  position: absolute;
+  transform: translate(-50% , -50%);
+  top: 340px;
+  left: 50%;
   background-color: #000;
-  width: 100%;
+  padding: 30px;
+  border-radius: 20px;
 }
 
-.trace-bg {
-  stroke: #333;
-  stroke-width: 1.8;
-  fill: none;
+.loader .circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: solid 2px var(--color);
+  border-radius: 50%;
+  margin: 0 10px;
+  background-color: transparent;
+  animation: circle-keys var(--animation);
 }
 
-.trace-flow {
-  stroke-width: 1.8;
-  fill: none;
-  stroke-dasharray: 40 400;
-  stroke-dashoffset: 438;
-  filter: drop-shadow(0 0 6px currentColor);
-  animation: flow 3s cubic-bezier(0.5, 0, 0.9, 1) infinite;
+.loader .circle .dot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--color);
+  animation: dot-keys var(--animation);
 }
 
-.yellow {
-  stroke: #ffea00;
-  color: #ffea00;
-}
-.blue {
-  stroke: #00ccff;
-  color: #00ccff;
-}
-.green {
-  stroke: #00ff15;
-  color: #00ff15;
-}
-.purple {
-  stroke: #9900ff;
-  color: #9900ff;
-}
-.red {
-  stroke: #ff3300;
-  color: #ff3300;
+.loader .circle .outline {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  animation: outline-keys var(--animation);
 }
 
-@keyframes flow {
-  to {
-    stroke-dashoffset: 0;
+.circle:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.circle:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.circle:nth-child(4) {
+  animation-delay: 0.9s;
+}
+
+.circle:nth-child(5) {
+  animation-delay: 1.2s;
+}
+
+.circle:nth-child(2) .dot {
+  animation-delay: 0.3s;
+}
+
+.circle:nth-child(3) .dot {
+  animation-delay: 0.6s;
+}
+
+.circle:nth-child(4) .dot {
+  animation-delay: 0.9s;
+}
+
+.circle:nth-child(5) .dot {
+  animation-delay: 1.2s;
+}
+
+.circle:nth-child(1) .outline {
+  animation-delay: 0.9s;
+}
+
+.circle:nth-child(2) .outline {
+  animation-delay: 1.2s;
+}
+
+.circle:nth-child(3) .outline {
+  animation-delay: 1.5s;
+}
+
+.circle:nth-child(4) .outline {
+  animation-delay: 1.8s;
+}
+
+.circle:nth-child(5) .outline {
+  animation-delay: 2.1s;
+}
+
+@keyframes circle-keys {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
-/* Čip */
-.chip-body {
-  rx: 20;
-  ry: 20;
+@keyframes dot-keys {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
-/* Text uvnitř čipu */
-.chip-text {
-  font-weight: bold;
-  letter-spacing: 1px;
+@keyframes outline-keys {
+  0% {
+    transform: scale(0);
+    outline: solid 20px var(--color);
+    outline-offset: 0;
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    outline: solid 0 transparent;
+    outline-offset: 20px;
+    opacity: 0;
+  }
+}
+.loaderContainer
+{
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 340px;
+  left: 50%;
+}
+.terminal-loader {
+  border: 0.1em solid #333;
+  background-color: #1a1a1a;
+  color: #0f0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1em;
+  padding: 1.5em 1em;
+  width: 18em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-/* Piny */
-.chip-pin {
-  stroke: #444;
-  stroke-width: 0.5;
-  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.6));
+.terminal-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5em;
+  background-color: #333;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 0 0.4em;
+  box-sizing: border-box;
 }
+
+.terminal-controls {
+  float: right;
+}
+
+.control {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  margin-left: 0.4em;
+  border-radius: 50%;
+  background-color: #777;
+}
+
+.control.close {
+  background-color: #e33;
+}
+
+.control.minimize {
+  background-color: #ee0;
+}
+
+.control.maximize {
+  background-color: #0b0;
+}
+
+.terminal-title {
+  float: left;
+  line-height: 1.5em;
+  color: #eee;
+}
+
+.text {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0.2em solid green;
+  animation:
+    typeAndDelete 4s steps(11) infinite,
+    blinkCursor 0.5s step-end infinite alternate;
+  margin-top: 1.5em;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.home-container {
+  min-height: 100vh;
+  width: 101%;
+  background: #f4f6f8;
+}
+
+.navbar {
+  height: 60px;
+  background: #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  color: #fff;
+}
+
+.logo {
+  font-size: 20px;
+}
+
+.logout-btn {
+  background: #ef4444;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 40px;
+  margin: auto;
+  justify-content: center;
+}
+
+.card {
+  background: white;
+  padding: 24px;
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  color: #1e293b;
+}
+
+.card p {
+  color: #475569;
+}
+
+

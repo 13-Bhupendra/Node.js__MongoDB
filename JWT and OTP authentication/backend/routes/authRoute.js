@@ -9,6 +9,6 @@ router.post("/signup" , validateSignupFields ,  signup)
 router.post("/signin" , validateSigninFields ,  signin)
 router.post("/otp/verify" , verifyOTP)
 router.get("/get" ,tokenVerificationForProtectRoutes , getData)
-router.post("/signout" , signout)
+router.get("/signout" , signout)
 
 export default router;
