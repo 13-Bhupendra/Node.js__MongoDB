@@ -2,7 +2,7 @@ import { Auth_Collection } from "../model/auth_model.js";
 import bcrypt from 'bcrypt'
 import { otpSender } from "../service/otp_service.js";
 
-/*================= Signup Controller ==============*/
+/*================= Signup Controller ===============*/
 export const signup = async (req ,res)=>{
     try {
         const {name , email , password , role} = req.body
