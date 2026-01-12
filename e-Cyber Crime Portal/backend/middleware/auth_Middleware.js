@@ -2,7 +2,7 @@ import { Auth_Collection } from "../model/auth_model.js"
 import bcrypt from "bcrypt"
 
 /*=================validate Signup middleware ==============*/
-export const validateSignupReq = (req ,res , next)=>{
+export const validateSignupReq = async (req ,res , next)=>{
     const {name , email , password , role } = req.body
     let isvalid = true
     const errors = {}
@@ -11,6 +11,13 @@ export const validateSignupReq = (req ,res , next)=>{
         errors.fields =  "All fields must be required !"
         isvalid = false;
     };
+
+    //already user exist then : 
+    const user = await Auth_Collection.findOne({email})
+    if(user){
+        errors.userExist =  "Email already registered. Please sign in instead."
+        isvalid = false;
+    }
 
     const nameRegx = /^[A-Za-z ]{5,30}$/;
     const emailRegx = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;

@@ -9,7 +9,7 @@ export const signup = async (req ,res)=>{
         const hashedPassword = await bcrypt.hash(password , 12);
 
         const result = await Auth_Collection.create({name , email , role , password : hashedPassword});
-        res.status(200).json({status : true , message : "User registration successfull !"});
+        res.status(200).json({status : true , message : "User registration successfull !" ,  result});
 
     } catch (error) {   
         res.status(400).json({status : false , message : "User registration failed !" , error});
