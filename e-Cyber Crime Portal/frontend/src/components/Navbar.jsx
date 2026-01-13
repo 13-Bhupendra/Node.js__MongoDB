@@ -1,32 +1,39 @@
-import React, { useState } from 'react'
-import Button from 'react-bootstrap/Button';
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import React, { useEffect, useState } from 'react'
+import "../style/navbar.css"
+import { FaRegUser } from "react-icons/fa";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
-const Navbar = () => {
-   const [show, setShow] = useState(false);
+const Navbar = ({PageName}) => {
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const menuList = [
-    {id : 1 , path: "/" , text : "Home" ,}
-  ]
+  const [time , setTime] = useState( new Date().toLocaleTimeString());
+  
+   useEffect(() => {
+      const interval = setInterval(() => {
+        setTime(new Date().toLocaleTimeString());
+      }, 1000);
+    }, []);
 
   return (
-    <div>
-      <Button variant="primary" onClick={handleShow}>
-        Launch
-      </Button>
-
-      <Offcanvas show={show} onHide={handleClose}>
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          Some text as placeholder. In real life you can have the elements you
-          have chosen. Like, text, images, lists, etc.
-        </Offcanvas.Body>
-      </Offcanvas>
+    <div className='mainSection'>
+        <div className="navbarContainer d-flex align-items-center">
+          <section className='ps-3 '>
+                <p className='m-0' style={{color : "lightCyan"}}><span className='pe-2' style={{color : "grey"}}>e-Cyber Crime Portal <MdKeyboardArrowRight /></span>{PageName}</p>
+          </section>
+            <section className='d-flex'>
+                   <div className="timeAndDate me-3 pe-3 d-flex align-items-center">
+                      <span style={{color : "lightCyan"}}>{time}</span>
+                  </div>
+                  <div className="navProfile d-flex pe-3">
+                            <div className="profileLogo d-flex justify-content-center align-items-center">
+                                  <FaRegUser />
+                            </div>
+                            <div className='profileLogoText ps-3'>
+                              <h6 className='m-0' style={{color : "lightCyan"}}>Bhupendra patil </h6>
+                              <span className='' style={{color : "lightGray" , fontSize:"12px"}}>+1 04582 96847</span>
+                            </div>
+                      </div>
+            </section>
+        </div>
     </div>
   )
 }

@@ -1,0 +1,25 @@
+.navbarContainer
+{
+    height: 10.5%;
+    width: 80%;
+    position: fixed;
+    top: 0%;
+    right: 0%;
+    z-index: 999;
+    border-bottom: 0.5px solid #1b2a4c;
+    justify-content: space-between;
+}
+.profileLogo 
+{
+    height: 40px;
+    width: 40px;
+    color: #1667b2;
+    background-color: #0F2436;
+    border-radius: 10px;
+}
+.timeAndDate
+{
+    border-right: 0.5px solid #1b2a4c;
+    height: 40px;
+
+}

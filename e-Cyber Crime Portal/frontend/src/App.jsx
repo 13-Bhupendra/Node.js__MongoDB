@@ -1,11 +1,13 @@
 import React from 'react'
-import Navbar  from "./components/Navbar.jsx"
+import Sidebar from './components/Sidebar'
+import AllRoutes from './routes/AllRoutes.jsx'
 
 const App = () => {
   return (
     <div>
       <h1>hello world</h1>
-      <Navbar />
+      <Sidebar />
+      <AllRoutes />
     </div>
   )
 }

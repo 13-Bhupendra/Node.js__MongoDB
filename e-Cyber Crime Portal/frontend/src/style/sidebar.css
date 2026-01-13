@@ -1,0 +1,65 @@
+.SideBarMainContainer
+{
+    width: 20%;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #090E1A;
+    border-right: 0.5px solid #1b2a4c;
+}
+.sideBarHeader .logo
+{
+    height: 40px;
+    width: 40px;
+    border: 1px solid #1667b2; 
+    color: #1667b2;
+    background-color: #0F2436;
+    border-radius: 10px;
+    font-size: larger;
+}
+.sideBarHeader
+{
+    border-bottom: 0.5px solid #1b2a4c;
+}
+.sidebarMenuList p
+{
+    color: darkgray;
+    font-weight: bold;
+}
+.sidebarMenuList .navMenu.active
+{
+    height: 40px;
+    background-color: rebeccapurple;
+    margin-bottom: 5px;
+    color: #1667b2;
+    background-color: #0F2436;
+    border-radius: 10px;
+    font-weight: bold;
+    border-left: 3px solid #1667b2;
+    border-right: 3px solid #1667b2;
+}
+ .sidebarMenuList .navMenu
+ {
+    height: 40px;
+    margin-bottom: 5px;
+    color: lightcyan;
+    font-weight: bold;
+    background-color: #0F2436;
+    border-radius: 10px;
+    border-left: 3px solid lightcyan;
+    border-right: 3px solid lightcyan;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding-left: 20px;
+ }
+ .sidebarFooter {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 0%;
+    color: gray;
+    border-top: 0.5px solid #1b2a4c;
+ }
+
