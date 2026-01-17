@@ -8,14 +8,14 @@ export const validateSignupReq = async (req ,res , next)=>{
     const errors = {}
 
     if(!name || !email || !password || !role){
-        errors.fields =  "All fields must be required !"
+        errors.fields =  "*All fields must be required !"
         isvalid = false;
     };
 
     //already user exist then : 
     const user = await Auth_Collection.findOne({email})
     if(user){
-        errors.userExist =  "Email already registered. Please sign in instead."
+        errors.userExist =  "*Email already registered. Please sign in instead."
         isvalid = false;
     }
 
@@ -26,25 +26,25 @@ export const validateSignupReq = async (req ,res , next)=>{
     
     //name regx
     if(!nameRegx.test(name)){
-            errors.name = "Name must be at least 5 characters long"
+            errors.name = "*Name must be at least 5 characters long"
             isvalid = false;
     };
 
     //Email regx
      if(!emailRegx.test(email)){
-            errors.email = "Please enter a valid email address"
+            errors.email = "*Please enter a valid email address"
             isvalid = false;
     };
 
     //Pass regx
      if(!passwordRegx.test(password)){
-            errors.password ="Password must be minimum 6 characters and contain letters and numbers"
+            errors.password ="*Password must be minimum 6 characters and contain letters and numbers"
             isvalid = false;
     };
 
     //Role regx
      if(!roleRegx.test(role)){
-            errors.role =  "Role must be user, investigator, or admin"
+            errors.role =  "*Role must be user, investigator, or admin"
             isvalid = false;
     };
 
@@ -66,29 +66,29 @@ export const validateSigninReq = async (req, res , next)=>{
     const errors = {};
 
     if(!email || !password){
-           errors.fields =  "All fields must be required !"
+           errors.fields =  "*All fields must be required !"
             isvalid = false;
     };
 
     //Email regx
     const user = await Auth_Collection.findOne({email});
      if(!user){
-            errors.email = "User not found , Register first !"
+            errors.email = "*User not found , Register first !"
             isvalid = false;
     } else {
         const isMatch = await bcrypt.compare(password , user.password); 
         if(!isMatch){
-            errors.password ="Incorrect Password !"
+            errors.password ="*Incorrect Password !"
             isvalid = false;
         }
 }
 
-    if(!isvalid){
-        return res.json({
-            status : false ,
-            errors
-        })
-    };
+   if (!isvalid) {
+        return res.status(400).json({
+            status: false,
+            errors,
+        });
+        }
 
     next()
 }

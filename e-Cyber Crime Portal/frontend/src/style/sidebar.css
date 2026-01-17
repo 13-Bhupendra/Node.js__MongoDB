@@ -3,10 +3,13 @@
     width: 20%;
     height: 100vh;
     position: fixed;
-    left: 0;
+    left: 0%;
     top: 0;
     background-color: #090E1A;
     border-right: 0.5px solid #1b2a4c;
+    z-index: 1999;
+
+   transition: transform 0.3s ease-in-out;
 }
 .sideBarHeader .logo
 {
@@ -63,3 +66,37 @@
     border-top: 0.5px solid #1b2a4c;
  }
 
+
+
+
+/*media query*/
+@media (max-width: 991px) {
+    .SideBarMainContainer {
+        width: 35%;
+    }
+}
+
+@media (max-width: 767px) {
+    .SideBarMainContainer {
+        width: 45%;
+    }
+}
+
+@media (max-width: 576px) {
+    .SideBarMainContainer {
+        width: 65%;
+    }
+}
+
+@media (max-width: 420px) {
+    .SideBarMainContainer {
+        width: 80%;
+    }
+}
+
+@media (min-width: 992px) {
+    .SideBarMainContainer {
+        width: 20%;
+        transform: translateX(0) !important;
+    }
+}

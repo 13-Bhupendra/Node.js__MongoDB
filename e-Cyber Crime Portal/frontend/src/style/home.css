@@ -1,0 +1,55 @@
+.HeroSection .tagLine{
+    height: auto;
+    width: fit-content;
+    background-color: #0F2436;
+    border-radius: 10px;
+    border: 1px solid var(--fontColor);
+}
+.HeroSection .tagLine span{
+    color: var(--fontColor);
+    font-weight: bold;
+}
+.HeroSection h1
+{
+    color: lightcyan;
+    font-weight: bold;
+}
+.HeroSection p
+{
+    color: gray;
+}
+.heroSectionButtons .heroSectionBtn1
+{   
+    height: 45px;
+    width: fit-content;
+    background-color: var(--fontColor);
+    color: lightcyan;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+
+    transition: all .3s ease-in-out;
+}
+.heroSectionButtons .heroSectionBtn1:hover
+{
+   background-color: lightcyan;
+   color: var(--fontColor);
+   font-weight: bold;
+}
+.heroSectionButtons .heroSectionBtn2
+{   
+    height: 45px;
+    width: fit-content;
+    background-color: lightcyan;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+
+    transition: all .3s ease-in-out;
+}
+.heroSectionButtons .heroSectionBtn2:hover
+{
+    background-color: var(--fontColor);
+    color: lightcyan;
+    font-weight: bold;
+}

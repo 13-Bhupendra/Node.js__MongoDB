@@ -1,12 +1,16 @@
-/* :root {
-    --bgColor : 
-} */
+:root {
+    --bgColor : #0C1320;
+    --borderColor : #1667b2 ;
+    --fontColor : #1667b2;
+    --darkColor : #1b2a4c;
+}
 
 *
 {
     margin: 0%;
     padding: 0%;
     box-sizing: border-box;
+    font-family: montserrat;
 }
 body
 {
@@ -18,4 +22,11 @@ body
     position: absolute;
     top: 10.5%;
     right: 0%;
+}
+
+/*media query*/
+@media (max-width : 992px) {
+    .mainSection{
+        width: 100%;
+    }
 }

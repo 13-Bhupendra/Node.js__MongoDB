@@ -34,7 +34,7 @@ export const validateOtpVerifyReq = (req , res ,next)=>{
     if(!email || !otp){
         return res.status(400).json({
             status : false , 
-            message : "Email and OTP are required !"
+            message : "invalid OTP !"
         });
     }
 

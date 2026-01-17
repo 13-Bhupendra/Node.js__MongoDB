@@ -1,0 +1,92 @@
+.footer {
+  background-color: #090E1A;
+  color: lightcyan;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  padding: 30px 15px;
+  width: 100%;
+  border-top: 0.5px solid #1b2a4c;
+}
+
+.upperContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.upperContent section:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footerLogo {
+  height: 50px;
+}
+
+.footerTitle {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.footerSubtitle {
+  font-size: 14px;
+  color: lightcyan;
+}
+
+/* Center Privacy / Terms / Disclaimer */
+.upperContent .footerLinks {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.upperContent .footerLinks span {
+  color: lightcyan;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.upperContent .footerLinks span:hover {
+  color: #38bdf8;
+}
+
+.footerHelpline {
+  font-size: 14px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.footerCopyright {
+  font-size: 12px;
+  margin-top: 5px;
+  text-align: center;
+  color: #bdefff;
+}
+
+
+@media (max-width: 576px) {
+  .footerLogo {
+    height: 40px;
+  }
+  .footerTitle {
+    font-size: 14px;
+  }
+  .footerSubtitle {
+    font-size: 12px;
+  }
+  .upperContent .footerLinks span {
+    font-size: 12px;
+  }
+  .footerHelpline {
+    font-size: 12px;
+  }
+  .footerCopyright {
+    font-size: 11px;
+  }
+}

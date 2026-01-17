@@ -6,6 +6,7 @@
     top: 0%;
     right: 0%;
     z-index: 999;
+    background-color: var(--bgColor);
     border-bottom: 0.5px solid #1b2a4c;
     justify-content: space-between;
 }
@@ -21,5 +22,105 @@
 {
     border-right: 0.5px solid #1b2a4c;
     height: 40px;
+}
+.toggle
+{
+    height: 40px;
+    width: 40px;
+    color: #1667b2;
+    background-color: #0F2436;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #1667b2;
 
+
+    transition: .3s ease-in-out;
+}
+.toggle :hover
+{
+    border: 5px solid #1b2a4c;
+    color: lightcyan;
+}
+
+
+
+/*media query*/
+@media (max-width: 992px) {
+  .navbarContainer {
+    width: 100%;
+    height: 64px;
+    padding: 0 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbarContainer {
+    height: 58px;
+  }
+
+}
+
+@media (max-width: 500px) {
+  .navbarContainer {
+    height: 54px;
+    padding: 0 8px;
+  }
+
+  .navbarContainer p {
+    font-size: 12px;
+    max-width: 48vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .timeAndDate {
+    margin-right: 6px;
+    padding-right: 6px;
+  }
+
+  .timeAndDate span {
+    font-size: 11px;
+  }
+
+  .profileLogo {
+    height: 30px;
+    width: 30px;
+  }
+
+  .profileLogoText h6 {
+    font-size: 11px;
+  }
+
+  .profileLogoText span {
+    font-size: 9px;
+  }
+
+  .toggle {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbarContainer {
+    height: 50px;
+  }
+
+  .navbarContainer p {
+    max-width: 42vw;
+    font-size: 11px;
+  }
+
+  .timeAndDate span {
+    font-size: 10px;
+  }
+
+  .profileLogoText h6 {
+    font-size: 10px;
+  }
+
+  .profileLogoText span {
+    font-size: 8px;
+  }
 }
