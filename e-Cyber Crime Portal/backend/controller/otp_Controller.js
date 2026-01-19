@@ -30,7 +30,7 @@ export const verifyOTP = async (req ,res)=>{
                 httpOnly : true
             })
             
-            res.json({status : true , message : "OTP is verified & Signin successfull !"});
+            res.json({status : true , message : "OTP is verified & Signin successfull !" , role : user.role});
             
     } catch (error) {
         res.status(400).json({status : false , message : "Invalid OTP !"})

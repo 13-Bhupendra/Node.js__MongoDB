@@ -31,9 +31,18 @@ const Otp_Verification = () => {
           );
 
           if (res.data.status === true) {
+          
             alert(res.data.message);
+            const role = res.data.role;
+            localStorage.setItem("role" , role);
+
+            window.location.reload();
+            if(role === "user")navigate("/" ,  { replace: true });
+            if(role === "investigator")navigate("/" ,  { replace: true });
+            if(role === "admin")navigate("/" ,  { replace: true })
+
             localStorage.removeItem("email");
-            navigate("/");         
+
           } else {
             alert(res.data.message);  
           }

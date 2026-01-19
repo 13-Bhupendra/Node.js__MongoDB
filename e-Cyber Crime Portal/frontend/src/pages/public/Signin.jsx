@@ -98,7 +98,7 @@ const Signin = () => {
              {error.email && <p style={{color : "red" , fontSize:"12px"}}>{error.email}</p>}
             </section>
 
-            {/* mobile */}
+            {/* Password */}
             <section className="mt-4">
               <label htmlFor="">Password</label> <br />
               <input
@@ -112,7 +112,7 @@ const Signin = () => {
             </section>
 
             <div className="formExtras mt-3">
-              <span className="forgotText">Forgot password?</span>
+              <span className="forgotText" onClick={()=> navigate("/auth/reset/forget/password")}>Forgot password?</span>
             </div>
 
             <button className="registerBtn mt-4" onClick={handleSigninReq}>{isOtpSending ? "OTP Sending" :  "Sign In"}</button>

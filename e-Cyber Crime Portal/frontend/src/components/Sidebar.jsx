@@ -9,16 +9,54 @@ import { BsTelephone } from "react-icons/bs";
 import { NavLink } from 'react-router-dom';
 import { IoClose } from "react-icons/io5";
 import LOGO from "../assets/images/logo.png"
+import { MdDashboard } from "react-icons/md";
+import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
+import { FaUserCircle } from "react-icons/fa";
+import { PiNoteLight } from "react-icons/pi";
+import { BsCardChecklist } from "react-icons/bs";
+import { FaUsers } from "react-icons/fa";
+import { RiUserSettingsLine } from "react-icons/ri";
 
 
 const Sidebar = () => {
+    const [role, setRole] = useState(null);
 
+    useEffect(() => {
+      const storedRole = localStorage.getItem("role");
+      if(storedRole) setRole(storedRole);
+    }, []);
+
+  
+  // public pages menu list
   const menuListData = [
     {id : 1 , path:"/" , text : "Home" , icon : <IoHomeOutline /> },
     {id : 2  , path:"/about" ,  text : "About" , icon : <AiOutlineExclamationCircle /> },
     {id : 3  , path:"/contact" ,  text : "Contact" , icon : <BsTelephone /> },
   ]
 
+    //user menu list
+    const menuListUsers = [
+    { id: 1, path: "/user/dashboard", text: "Dashboard", icon: <MdDashboard /> },
+    { id: 2, path: "/user/file/complaint", text: "File Complaint", icon: <PiNoteLight /> },
+    { id: 3, path: "/user/complaints", text: "My Complaints", icon: <IoCheckmarkDoneCircleOutline /> },
+    { id: 4, path: "/user/profile", text: "Profile", icon: <FaUserCircle /> },
+  ];
+
+  // Investigator menu
+  const menuListInvestigator = [
+    { id: 1, path: "/investigator/dashboard", text: "Dashboard", icon: <MdDashboard /> },
+    { id: 2, path: "/investigator/assigned/complaints", text: "Assigned Complaints", icon: <PiNoteLight /> },
+    { id: 3, path: "/investigator/case/detail", text: "Case Details", icon: <BsCardChecklist /> },
+  ];
+
+  // Admin menu
+  const menuListAdmin = [
+    { id: 1, path: "/admin/dashboard", text: "Dashboard", icon: <MdDashboard /> },
+    { id: 2, path: "/admin/manage/users", text: "Manage Users", icon: <FaUsers /> },
+    { id: 3, path: "/admin/manage/investigators", text: "Manage Investigators", icon: <RiUserSettingsLine /> },
+  ];
+
+  // auth pages menu list
   const menuListDataTwo = [
     {id : 1 , path : "/auth/signin" , text : "Sign in" , icon : <IoIosLogIn />},
     {id : 2 , path : "/auth/signup" , text : "Register" , icon : <FaRegUser />},
@@ -69,15 +107,40 @@ const Sidebar = () => {
               </section>
             </NavLink>
           ))}
+
+          {role === "user" && menuListUsers.map((el)=>(
+              <NavLink to={el.path} className={({isActive})=>isActive ? "navMenu active" : "navMenu"}   onClick={() => window.dispatchEvent(new Event("toggle-sidebar"))}>
+              <section>
+                {el.icon}<span className='ps-2'> {el.text}</span>
+              </section>
+            </NavLink>
+          ))}
+
+           {role === "investigator" && menuListInvestigator.map((el)=>(
+              <NavLink to={el.path} className={({isActive})=>isActive ? "navMenu active" : "navMenu"}   onClick={() => window.dispatchEvent(new Event("toggle-sidebar"))}>
+              <section>
+                {el.icon}<span className='ps-2'> {el.text}</span>
+              </section>
+            </NavLink>
+          ))}
+
+           {role === "admin" && menuListAdmin.map((el)=>(
+              <NavLink to={el.path} className={({isActive})=>isActive ? "navMenu active" : "navMenu"}   onClick={() => window.dispatchEvent(new Event("toggle-sidebar"))}>
+              <section>
+                {el.icon}<span className='ps-2'> {el.text}</span>
+              </section>
+            </NavLink>
+          ))}
           
-          <p className='menuTitle mt-5' >Access Portal</p>
-          {menuListDataTwo.map((el)=>(
+          {!role && <p className='menuTitle mt-5' >Access Portal</p>}
+          {!role && menuListDataTwo.map((el)=>(
             <NavLink to={el.path} className={({isActive})=>isActive ? "navMenu active" : "navMenu"} onClick={() => window.dispatchEvent(new Event("toggle-sidebar"))}>
               <section>
                 {el.icon}<span className='ps-2'> {el.text}</span>
               </section>
             </NavLink>
           ))}
+
       </div>
   
       <div className="sidebarFooter pt-3">
