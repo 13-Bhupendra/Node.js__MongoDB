@@ -48,3 +48,44 @@ export const signin = async (req ,res)=>{
 /*================= Signout Controller ==============*/
 export const signout = async (req ,res)=>{}
 
+
+/*================= Change Password Controller ==============*/
+export const changePassword = async (req , res )=>{
+    const {email , oldPassword , newPassword} = req.body
+
+    try {
+        const user = await Auth_Collection.findOne({email})
+        if(!user){
+            return res.status(400).json({status : false , message : "User not found !"});
+        }
+
+        const isMatch = await bcrypt.compare(oldPassword , user.password);
+        if(!isMatch){
+            return res.status(400).json({status : false , message : "Password dos'nt Match to old Password !"});
+        }
+
+        const hashedPassword = await bcrypt.hash(newPassword , 12);
+        await Auth_Collection.updateOne({email} , {$set : {
+            password : hashedPassword
+        }})
+
+        return res.json({ status: true, message: "password changed successfully !" });
+    } catch (error) {
+          return res.json({ status: false, message:  "Password not changed ! " , error : error.message });
+    }       
+}
+
+
+/*================= Forget / reset Password Controller ==============*/
+export const resetForgetPassword = async (req , res )=>{
+    const {email} = req.body;
+    const user = await Auth_Collection.findOne({email})
+        if(!user){
+            return res.status(400).json({status : false , message : "User not found !"});
+    }
+
+    const isOtpSent  = await otpSender(email);
+    res.json(isOtpSent);
+}
+
+
