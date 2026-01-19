@@ -1,0 +1,151 @@
+.aboutPage {
+    color: #ffffff;
+}
+
+.aboutHero {
+    background: linear-gradient(145deg, #0f1c2e, #0b1626);
+    border: 1px solid #1b2a4c;
+    border-radius: 20px;
+}
+
+.aboutHero h1 {
+    color: lightcyan;
+    font-weight: bold;
+}
+
+.aboutHero p {
+    color: #9fb2c7;
+    max-width: 720px;
+}
+
+.tagLine {
+    background-color: #0f2436;
+    border: 1px solid var(--fontColor);
+    border-radius: 10px;
+    padding: 6px 14px;
+    width: fit-content;
+    color: var(--fontColor);
+    font-weight: 600;
+}
+
+.miniTitle {
+    color: var(--fontColor);
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.missionSection h2 {
+    color: lightcyan;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.missionSection p {
+    color: #9fb2c7;
+    line-height: 1.8;
+}
+
+.statBox {
+    background: linear-gradient(145deg, #0f1c2e, #0b1626);
+    border: 1px solid #1b2a4c;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    transition: 0.35s ease;
+}
+
+.statBox h3 {
+    color: var(--fontColor);
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.statBox span {
+    color: #9fb2c7;
+    font-size: 14px;
+}
+
+.statBox:hover {
+    transform: translateY(-6px);
+    border-color: var(--fontColor);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.coreValuesSection {
+    background: linear-gradient(145deg, #0f1c2e, #0b1626);
+    border: 1px solid #1b2a4c;
+    border-radius: 20px;
+}
+
+.sectionTitle {
+    color: lightcyan;
+    font-weight: bold;
+}
+
+.valueCard {
+    background: #0b1626;
+    border: 1px solid #1b2a4c;
+    border-radius: 18px;
+    padding: 30px;
+    height: 100%;
+    transition: 0.35s ease;
+}
+
+.valueCard svg {
+    font-size: 32px;
+    color: var(--fontColor);
+    margin-bottom: 15px;
+}
+
+.valueCard h5 {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.valueCard p {
+    color: #9fb2c7;
+    font-size: 14px;
+    margin: 0;
+}
+
+.valueCard:hover {
+    transform: translateY(-8px);
+    border-color: var(--fontColor);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+}
+
+.securityNote {
+    background: linear-gradient(145deg, #101c2b, #0b1524);
+    border: 1px solid #1b2a4c;
+    border-radius: 16px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.securityNote svg {
+    font-size: 38px;
+    color: var(--fontColor);
+}
+
+.securityNote p {
+    margin: 0;
+    color: #b9cce2;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+    .aboutHero {
+        padding: 30px !important;
+    }
+
+    .statBox {
+        padding: 22px;
+    }
+
+    .valueCard {
+        padding: 24px;
+    }
+}

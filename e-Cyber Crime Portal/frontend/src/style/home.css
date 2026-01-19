@@ -53,3 +53,232 @@
     color: lightcyan;
     font-weight: bold;
 }
+
+
+
+
+.aboutCasesContent
+{
+    background-color: #0F2436;
+    border-top:1px solid #1b2a4c;
+    border-bottom:1px solid #1b2a4c;
+    width: 100%;
+    border-radius: 10px;
+}
+.aboutCasesContent .caseIcon
+{
+    height: 50px;
+    width: 50px;
+    background-color: #101728;
+    border: 1px solid var(--borderColor);
+    border-radius: 10px;
+    color: var(--borderColor);
+    font-size: 30px;    
+}
+
+
+/* =====================================
+   SERVICES SECTION
+===================================== */
+
+.servicesSection {
+    margin-top: 80px;
+}
+
+.serviceBox {
+    background: linear-gradient(145deg, #0f1c2e, #0b1626);
+    border: 1px solid #1b2a4c;
+    border-radius: 16px;
+    padding: 28px 30px;
+    transition: 0.35s ease;
+    height: 100%;
+}
+
+.serviceBox:hover {
+    border-color: var(--fontColor);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+    transform: translateY(-6px);
+}
+
+.serviceIcon {
+    height: 48px;
+    width: 48px;
+    background: rgba(0, 170, 255, 0.12);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fontColor);
+    font-size: 22px;
+}
+
+.serviceBox h5 {
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.serviceBox p {
+    color: #9fb2c7;
+    font-size: 14px;
+    margin: 0;
+    max-width: 420px;
+}
+
+.arrowIcon {
+    font-size: 26px;
+    color: #6b85a6;
+    transition: 0.3s;
+}
+
+.serviceBox:hover .arrowIcon {
+    color: var(--fontColor);
+    transform: translateX(6px);
+}
+
+/* =====================================
+   REPORTABLE CRIMES
+===================================== */
+
+.reportSection {
+    margin-top: 90px;
+}
+
+.crimeBox {
+    background: linear-gradient(145deg, #0f1c2e, #0b1626);
+    border: 1px solid #1b2a4c;
+    border-radius: 14px;
+    padding: 18px 20px;
+    color: #ffffff;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: 0.3s;
+    height: 100%;
+}
+
+.crimeBox span {
+    background: #0b2a44;
+    color: var(--fontColor);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.crimeBox:hover {
+    transform: translateY(-5px);
+    border-color: var(--fontColor);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+/* =====================================
+   PROCESS FLOW SECTION
+===================================== */
+
+.processSection {
+    margin-top: 90px;
+}
+
+.processFlow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.processCard {
+    background: linear-gradient(145deg, #0f1c2e, #0b1626);
+    border: 1px solid #1b2a4c;
+    border-radius: 18px;
+    padding: 30px 25px;
+    min-width: 220px;
+    text-align: center;
+    position: relative;
+    transition: 0.35s ease;
+}
+
+.processCard span {
+    display: inline-block;
+    background: rgba(0,170,255,0.15);
+    color: var(--fontColor);
+    padding: 6px 18px;
+    border-radius: 40px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.processCard h6 {
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.processCard p {
+    color: #9fb2c7;
+    font-size: 14px;
+    margin: 0;
+}
+
+.processCard:hover {
+    transform: translateY(-8px);
+    border-color: var(--fontColor);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+}
+
+.flowArrow {
+    font-size: 34px;
+    color: #4c6b8a;
+}
+
+
+.noticeSection {
+    background: linear-gradient(145deg, #1b0f0f, #120909);
+    border: 1px solid #3b1f1f;
+    padding: 30px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.noticeSection svg {
+    font-size: 38px;
+    color: #ffb703;
+}
+
+.noticeSection p {
+    margin: 0;
+    color: #ffdede;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+@media (max-width: 992px) {
+    .processFlow {
+        justify-content: center;
+    }
+
+    .flowArrow {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .serviceBox {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 15px;
+    }
+
+    .arrowIcon {
+        align-self: flex-end;
+    }
+
+    .processCard {
+        width: 100%;
+    }
+}
