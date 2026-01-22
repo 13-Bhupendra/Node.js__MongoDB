@@ -47,6 +47,7 @@ const Sidebar = () => {
     { id: 1, path: "/investigator/dashboard", text: "Dashboard", icon: <MdDashboard /> },
     { id: 2, path: "/investigator/assigned/complaints", text: "Assigned Complaints", icon: <PiNoteLight /> },
     { id: 3, path: "/investigator/case/detail", text: "Case Details", icon: <BsCardChecklist /> },
+    { id: 4, path: "/investigator/profile", text: "Profile", icon: <FaRegUser /> },
   ];
 
   // Admin menu
@@ -54,6 +55,7 @@ const Sidebar = () => {
     { id: 1, path: "/admin/dashboard", text: "Dashboard", icon: <MdDashboard /> },
     { id: 2, path: "/admin/manage/users", text: "Manage Users", icon: <FaUsers /> },
     { id: 3, path: "/admin/manage/investigators", text: "Manage Investigators", icon: <RiUserSettingsLine /> },
+    { id: 4, path: "/admin/profile", text: "Profile", icon: <FaRegUser /> },
   ];
 
   // auth pages menu list

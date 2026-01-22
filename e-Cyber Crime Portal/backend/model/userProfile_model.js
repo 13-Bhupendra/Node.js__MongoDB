@@ -1,14 +1,11 @@
 import mongoose from "mongoose";
 
 const userProfileSchema = new mongoose.Schema({
-   userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "authCollection",
-    required: true
-    },
     name : String ,
+    role : String,
     email : String ,
-    phone : String ,
+    phone : String ,   
+    pincode : Number, 
     address : String,
     city : String, 
     state : String,

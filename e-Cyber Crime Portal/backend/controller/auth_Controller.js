@@ -1,6 +1,7 @@
 import { Auth_Collection } from "../model/auth_model.js";
 import bcrypt from 'bcrypt'
 import { otpSender } from "../service/otp_service.js";
+import { UserProfile_Collection } from "../model/userProfile_model.js";
 
 /*================= Signup Controller ===============*/
 export const signup = async (req ,res)=>{
@@ -9,6 +10,8 @@ export const signup = async (req ,res)=>{
         const hashedPassword = await bcrypt.hash(password , 12);
 
         const result = await Auth_Collection.create({name , email , role , password : hashedPassword});
+        await UserProfile_Collection.create({name , email , role  });
+        
         res.status(200).json({status : true , message : "User registration successfull !" ,  result});
 
     } catch (error) {   
@@ -46,7 +49,18 @@ export const signin = async (req ,res)=>{
 
 
 /*================= Signout Controller ==============*/
-export const signout = async (req ,res)=>{}
+export const signout = async (req ,res)=>{
+    try {
+        res.clearCookie("Auth_Token" , {
+             maxAge: 1000 * 60 * 60 * 24,
+             sameSite :"strict",
+             httpOnly : true
+        })
+        res.json({ status: true, message: "signout successfully !" })
+    } catch (error) {
+        res.json({ status: false, message: "signout failed !" });
+    }
+}
 
 
 /*================= Change Password Controller ==============*/

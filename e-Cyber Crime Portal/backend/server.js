@@ -1,5 +1,6 @@
 import express from "express"
 import Auth_Routers from "./routes/auth_routes.js"
+import User_Routers from './routes/user_routes.js'
 import { connectDB } from "./config/db.js";
 import dotenv from "dotenv"
 import cors from "cors"
@@ -21,6 +22,7 @@ app.use(
 connectDB()
 
 app.use("/" , Auth_Routers);
+app.use("/" , User_Routers);
 
 app.listen(process.env.PORT , ()=>{
     console.log("Server started successfully , on the PORT http://localhost:"+process.env.PORT)

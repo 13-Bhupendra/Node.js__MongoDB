@@ -1,0 +1,202 @@
+.userProfileCard {
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #0f1b2c, #050b14);
+}
+
+/*main Profile Content*/
+.profileMainContentCard {
+    width: 100%;
+    background: linear-gradient(145deg, #192e4a, #0f1b2c);
+    border-radius: 20px;
+    border: 1px solid var(--borderColor);
+    overflow: hidden;
+}
+
+.profileMainContentCard .cardheader {
+    height: 100px;
+    width: 100%;
+    background: linear-gradient(145deg, #122238, #102038);
+    border-bottom: 0.5px solid #1b2a4c;
+}
+
+.profileImage {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    background-color: #1b2a4c;
+    position: relative;
+    top: -40px;
+    border: 4px solid #0f1b2c;
+    overflow: hidden;
+}
+
+.profileImage img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.profileInfo {
+    flex-direction: column;
+    padding-bottom: 25px;
+}
+
+.roleIcon {
+    border: 1px solid #1667b2;
+    color: #1667b2;
+    background-color: #0F2436;
+    border-radius: 10px;
+    font-size: 12px;
+    padding: 3px 14px;
+    margin-bottom: 10px;
+}
+
+.logOutBtn button {
+    margin-top: 15px;
+    background: transparent;
+    border: 1px solid #1b2a4c;
+    color: #9fb6d4;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/*Account Status card*/
+.accountStatusCard {
+    background: linear-gradient(145deg, #122238, #0f1b2c);
+    border-radius: 18px;
+    border: 1px solid #1b2a4c;
+    padding: 20px;
+}
+
+.statusRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #9fb6d4;
+    margin-top: 10px;
+}
+
+.statusBadge {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.verified {
+    background-color: rgba(0,200,150,0.15);
+    color: #3dd6a5;
+}
+
+.pending {
+    background-color: rgba(255,170,0,0.15);
+    color: #ffb347;
+}
+
+.profileDetailsCard {
+    background-color: #0F2436;
+    border-radius: 20px;
+    border: 1px solid var(--darkColor);
+    padding: 30px;
+}
+
+.personalHeader {
+    border-bottom: 1px solid #1667b2;
+    border-top: 1px solid #1667b2;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.personalHeader h5 {
+    color: lightcyan;
+    margin-bottom: 4px;
+}
+
+.personalHeader p {
+    font-size: 13px;
+    color: #9fb6d4;
+}
+
+.formRow {
+    display: flex;
+    gap: 15px;
+    padding: 14px 0;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.formIcon {
+    width: 38px;
+    height: 38px;
+    background-color: #090E1A;
+    border-radius: 10px;
+    color: #5dade2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #1667b2;
+}
+
+.formContent {
+    flex: 1;
+    width: 100%;
+}
+
+.formContent label {
+    color: lightcyan;
+    font-size: 13px;
+}
+
+.formContent input {
+    width: 100%;
+    height: 45px;
+    background-color: #090E1A;
+    color: lightgray;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #1667b2;
+    margin-top: 6px;
+}
+
+.updateBtn {
+    width: 100%;
+    height: 48px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #1667b2, #0b3c66);
+    transition: all 0.3s ease;
+    margin-top: 30px;
+}
+
+.updateBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(22, 103, 178, 0.4);
+}
+
+/*Security Note*/
+.securityNote {
+    margin-top: 25px;
+    background-color: #0F2436;
+    border-radius: 10px;
+    border: 1px solid var(--darkColor);
+    padding: 18px;
+    color: #9fb6d4;
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .formRow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .formIcon {
+        margin-bottom: 6px;
+    }
+}

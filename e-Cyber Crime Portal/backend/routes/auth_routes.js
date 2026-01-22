@@ -12,5 +12,5 @@ router.post("/api/otp/verify" ,validateOtpVerifyReq,  verifyOTP)
 router.post("/api/changePassword" , changePassword)
 router.post("/api/reset/forgetPassword" , resetForgetPassword)
 router.post("/api/otp/verify/create/newPassword" , verifyOTPForCreatePassword)
-
+router.post("/api/signout" , signout)
 export default router;

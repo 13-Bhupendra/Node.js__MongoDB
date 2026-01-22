@@ -36,10 +36,11 @@ const Otp_Verification = () => {
             const role = res.data.role;
             localStorage.setItem("role" , role);
 
-            window.location.reload();
             if(role === "user")navigate("/" ,  { replace: true });
             if(role === "investigator")navigate("/" ,  { replace: true });
             if(role === "admin")navigate("/" ,  { replace: true })
+            
+              window.location.reload();
 
             localStorage.removeItem("email");
 
@@ -58,7 +59,7 @@ const Otp_Verification = () => {
   return (
     <div className='mainSection'>
       <div className="d-flex justify-content-center">
-        <Navbar PageName="Sign up" />
+        <Navbar PageName="Verify OTP" />
 
         <div className="signUpFormContainer mt-5 mb-5">
           <div className="formHeader p-3">

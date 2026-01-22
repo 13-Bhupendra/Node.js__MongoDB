@@ -21,6 +21,8 @@ import AdminDashboard from "../pages/admin/AdminDashboard.jsx";
 import ManageUsers from "../pages/admin/ManageUsers.jsx";
 import ManageInvestigators from "../pages/admin/ManageInvestigators.jsx"
 import ResetForgetPassword from "../pages/public/ResetForgetPassword.jsx";
+import AdminProfile from "../pages/admin/AdminProfile.jsx";
+import InvestigatorProfile from "../pages/investigator/InvestigatorProfile.jsx";
 
 const AllRoutes = () => {
   const [role, setRole] = useState(undefined);
@@ -67,6 +69,7 @@ const AllRoutes = () => {
             <Route path="assigned/complaints" element={<AssignedComplaints />} />
             <Route path="case/detail" element={<CaseDetail />} />
             <Route path="dashboard" element={<InvestigatorDashboard />} />
+            <Route path="profile" element={<InvestigatorProfile />} />
           </Route>
 
           {/* ADMIN */}
@@ -74,7 +77,7 @@ const AllRoutes = () => {
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="manage/users" element={<ManageUsers />} />
             <Route path="manage/investigators" element={<ManageInvestigators />} />
-
+            <Route path="profile" element={<AdminProfile />} />
           </Route>
 
 
