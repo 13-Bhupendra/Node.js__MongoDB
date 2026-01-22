@@ -99,7 +99,7 @@ export const validateSigninReq = async (req, res , next)=>{
 
 /*=================Verify User token middleware ==============*/
 export const verifyToken = (req, res , next)=>{
-    const token = req.cookie.Auth_Token;
+    const token = req.cookies.Auth_Token;
 
     if(!token){
         return res.status(401).json({status : false , message : "Unauthorized !"});

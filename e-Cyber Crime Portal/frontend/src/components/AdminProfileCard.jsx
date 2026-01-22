@@ -18,12 +18,12 @@ const AdminProfileCard = () => {
           const res = await axios.post(`${BASE_URL}/api/signout` , {},
               { withCredentials: true }
             )
-             localStorage.removeItem("role")
 
             if(res.data.status === true){
               alert(res.data.message);
-              window.location.reload()
               navigate("/auth/signin")
+              window.location.reload()
+
             }
       } catch (error) {
 

@@ -35,8 +35,6 @@ const Sidebar = () => {
 
     useEffect(() => {
       getUser()
-      // const storedRole = localStorage.getItem("role");
-      // if(storedRole) setRole(storedRole);
     }, []);
 
     if (role === undefined) return null;

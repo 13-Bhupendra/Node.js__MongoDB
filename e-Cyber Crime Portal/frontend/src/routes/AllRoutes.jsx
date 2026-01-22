@@ -40,10 +40,7 @@ const AllRoutes = () => {
   }
 
   useEffect(() => {
-    getUser();
-    // const storedRole = localStorage.getItem("role");
-    // if (storedRole) setRole(storedRole);
-    // else setRole(null);
+    getUser();;
   }, []);
 
   if (role === undefined) return null;
