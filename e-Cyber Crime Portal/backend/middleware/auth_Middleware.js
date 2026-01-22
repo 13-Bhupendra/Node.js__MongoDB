@@ -1,8 +1,11 @@
 import { Auth_Collection } from "../model/auth_model.js"
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
+import dotenv from "dotenv"
+dotenv.config()
 
 /*=================validate Signup middleware ==============*/
-export const validateSignupReq = async (req ,res , next)=>{
+export const validateSignupReq = async (req ,res , next)=>{a
     const {name , email , password , role } = req.body
     let isvalid = true
     const errors = {}
@@ -91,4 +94,22 @@ export const validateSigninReq = async (req, res , next)=>{
         }
 
     next()
+}
+
+
+/*=================Verify User token middleware ==============*/
+export const verifyToken = (req, res , next)=>{
+    const token = req.cookie.Auth_Token;
+
+    if(!token){
+        return res.status(401).json({status : false , message : "Unauthorized !"});
+    }
+
+    try {
+        const decoded = jwt.verify(token , process.env.SECRET_KEY)
+        req.user = decoded.user;
+        next()
+    } catch (error) {
+        return res.status(401).json({status : false , message: "Invalid token" });
+    }
 }

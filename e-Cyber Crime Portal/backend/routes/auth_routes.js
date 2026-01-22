@@ -1,6 +1,6 @@
 import express from "express"
 import { signin , signup , signout, changePassword, resetForgetPassword} from "../controller/auth_Controller.js"
-import { validateSignupReq , validateSigninReq} from "../middleware/auth_Middleware.js"
+import { validateSignupReq , validateSigninReq, verifyToken} from "../middleware/auth_Middleware.js"
 import { verifyOTP, verifyOTPForCreatePassword } from "../controller/otp_Controller.js";
 import { otpSendLimiter, validateOtpVerifyReq } from "../middleware/otp_Middleware.js";
 
@@ -13,4 +13,11 @@ router.post("/api/changePassword" , changePassword)
 router.post("/api/reset/forgetPassword" , resetForgetPassword)
 router.post("/api/otp/verify/create/newPassword" , verifyOTPForCreatePassword)
 router.post("/api/signout" , signout)
+
+router.get("/api/me" , verifyToken , (req , res)=>{
+    res.json({
+        status : true,
+        user : req.user
+    })
+})
 export default router;

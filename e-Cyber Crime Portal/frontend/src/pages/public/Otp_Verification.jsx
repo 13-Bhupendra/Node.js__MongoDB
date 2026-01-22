@@ -33,12 +33,13 @@ const Otp_Verification = () => {
           if (res.data.status === true) {
           
             alert(res.data.message);
-            const role = res.data.role;
-            localStorage.setItem("role" , role);
+            navigate("/", { replace: true });
+            // const role = res.data.role;
+            // localStorage.setItem("role" , role);
 
-            if(role === "user")navigate("/" ,  { replace: true });
-            if(role === "investigator")navigate("/" ,  { replace: true });
-            if(role === "admin")navigate("/" ,  { replace: true })
+            // if(role === "user")navigate("/" ,  { replace: true });
+            // if(role === "investigator")navigate("/" ,  { replace: true });
+            // if(role === "admin")navigate("/" ,  { replace: true })
             
               window.location.reload();
 

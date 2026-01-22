@@ -22,7 +22,12 @@ export const verifyOTP = async (req ,res)=>{
             await OTP_Collection.deleteMany({email});
 
             const user = await Auth_Collection.findOne({email});
-            const token = jwt.sign({user} , process.env.SECRET_KEY , {expiresIn : "1d"});
+            const token = jwt.sign({user : {
+                _id : user._id,
+                name : user.name,
+                email : user.email,
+                role: user.role
+            }} , process.env.SECRET_KEY , {expiresIn : "1d"});
             
             res.cookie("Auth_Token" , token , {
                 maxAge :  1000 * 60 * 60 * 24,

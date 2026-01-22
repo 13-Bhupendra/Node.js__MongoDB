@@ -16,16 +16,30 @@ import { PiNoteLight } from "react-icons/pi";
 import { BsCardChecklist } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { RiUserSettingsLine } from "react-icons/ri";
+import axios from 'axios';
 
 
 const Sidebar = () => {
     const [role, setRole] = useState(null);
+    const BASE_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
+
+    //Get current user
+    const getUser = async ()=>{
+      try {
+          const res = await axios.get(`${BASE_URL}/api/me` ,  { withCredentials: true });
+          setRole(res.data.user.role)
+      } catch (error) {
+          setRole(null)
+      }
+    }
 
     useEffect(() => {
-      const storedRole = localStorage.getItem("role");
-      if(storedRole) setRole(storedRole);
+      getUser()
+      // const storedRole = localStorage.getItem("role");
+      // if(storedRole) setRole(storedRole);
     }, []);
 
+    if (role === undefined) return null;
   
   // public pages menu list
   const menuListData = [

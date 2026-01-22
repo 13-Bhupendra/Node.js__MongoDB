@@ -23,14 +23,27 @@ import ManageInvestigators from "../pages/admin/ManageInvestigators.jsx"
 import ResetForgetPassword from "../pages/public/ResetForgetPassword.jsx";
 import AdminProfile from "../pages/admin/AdminProfile.jsx";
 import InvestigatorProfile from "../pages/investigator/InvestigatorProfile.jsx";
+import axios from "axios";
 
 const AllRoutes = () => {
   const [role, setRole] = useState(undefined);
+  const BASE_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
+
+  //Get current user
+  const getUser = async ()=>{
+    try {
+        const res = await axios.get(`${BASE_URL}/api/me` ,  { withCredentials: true });
+        setRole(res.data.user.role)
+    } catch (error) {
+        setRole(null)
+    }
+  }
 
   useEffect(() => {
-    const storedRole = localStorage.getItem("role");
-    if (storedRole) setRole(storedRole);
-    else setRole(null);
+    getUser();
+    // const storedRole = localStorage.getItem("role");
+    // if (storedRole) setRole(storedRole);
+    // else setRole(null);
   }, []);
 
   if (role === undefined) return null;
