@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { use, useState } from 'react'
 import Footer from '../../components/Footer'
 import LOGO from "../../assets/images/logo.png"
 import Navbar from '../../components/Navbar'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const ResetForgetPassword = () => {
-  const [email , setEmail] = useState("")
-  const [isOtpSending , setIsOtpSending] = useState(false)
+const OtpVerify_CreatePassword = () => {
+  const email = localStorage.getItem("email")
+  const [otp , setOtp] = useState("")
+  const [newPassword , setNewPassword] = useState("")
   const [error , setError] = useState("")
 
   const navigate = useNavigate()
@@ -15,24 +16,20 @@ const ResetForgetPassword = () => {
 
   const handleResetForgetPasswordReq = async()=>{
       try {
-          setIsOtpSending(true)
-          const res = await axios.post(`${BASE_URL}/api/reset/forgetPassword` , {email : email})
-       
-          localStorage.setItem("email" , email );
-       
+          const res = await axios.post(`${BASE_URL}/api/otp/verify/create/newPassword` , {email : email , otp , newPassword})
+          
           if(res.data.status === true){
             alert(res.data.message)
-            navigate("/auth/otp/verify/create/newPassword")
+            navigate("/auth/signin")
           }
 
-          setEmail("")
+          setOtp("") , setNewPassword("")
+          
       } catch (error) {
         if(error.response?.data?.message){
           setError(error.response.data.message)
-          setEmail("");
         }
       }finally{
-        setIsOtpSending(false)
       }
   }
 
@@ -56,42 +53,35 @@ const ResetForgetPassword = () => {
             </div>
           </div>
 
-        {isOtpSending ? 
-        //loading
-        <div className="loader">
-              <div className="loading d-flex column justify-content-center mt-5 pt-5">
-                <div className="honeycomb">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-            </div>
-            <p className='text-center mt-5 fs-3 fw-bold' style={{color : "#1667b2"}}>OTP Sending.....</p>
-        </div>
-          : 
-           //Form 
           <div className="form">
             <section className="mt-5 ">
-              <label htmlFor="">Email</label> <br />
+              <label htmlFor="">OTP</label> <br />
               <input
-                type="email"
+                type="text"
                 className="input mb-2"
-                placeholder="Enter your Email "
-                onChange={(e)=>setEmail(e.target.value)}
-                value={email}
+                placeholder="Enter valid OTP "
+                onChange={(e)=>setOtp(e.target.value)}
+                value={otp}
               />
             </section>
 
 
-            <button className="registerBtn mt-4 mb-2 " onClick={handleResetForgetPasswordReq}>Submit</button>
+             <section className="mt-4">
+              <label htmlFor="">New Password</label> <br />
+              <input
+                type="password"
+                className="input mb-2"
+                placeholder="Create New Password "
+                onChange={(e)=>setNewPassword(e.target.value)}
+                value={newPassword}
+              />
+            </section>
+
+
+            <button className="registerBtn mt-4 mb-2" onClick={handleResetForgetPasswordReq}>Update</button>
              {<p className='text-center' style={{color : "red" , fontSize:"12px"}}>{error}</p>}
 
           </div>
-          } 
 
         </div>
       </div>
@@ -100,4 +90,4 @@ const ResetForgetPassword = () => {
   )
 }
 
-export default ResetForgetPassword
+export default OtpVerify_CreatePassword

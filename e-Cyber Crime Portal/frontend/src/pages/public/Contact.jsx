@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
 import {
@@ -11,6 +11,28 @@ import {
 import "../../style/contact.css"
 
 const Contact = () => {
+  const [result, setResult] = useState("");
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    setResult("Sending....");
+    const formData = new FormData(event.target);
+    formData.append("access_key", "d4bbc324-6a98-4430-9214-8c6ccdeaa5ba");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      setResult("Form Submitted Successfully");
+      event.target.reset();
+    } else {
+      setResult("Error");
+    }
+  };
+
   return (
     <div className="mainSection ">
       <Navbar PageName="Contact Us" />
@@ -77,8 +99,7 @@ const Contact = () => {
                 </h4>
               </div>
 
-              <div className="form mt-4">
-
+              <form  onSubmit={onSubmit} className="form mt-4">
                 <div className="row g-3">
                   <div className="col-md-6">
                     <label>Full Name</label>
@@ -86,6 +107,8 @@ const Contact = () => {
                       type="text"
                       className="input"
                       placeholder="Your name"
+                      name="Full Name"
+                    required
                     />
                   </div>
 
@@ -95,6 +118,8 @@ const Contact = () => {
                       type="email"
                       className="input"
                       placeholder="your@email.com"
+                      name="Email"
+                      required
                     />
                   </div>
                 </div>
@@ -105,6 +130,8 @@ const Contact = () => {
                     type="text"
                     className="input"
                     placeholder="How can we help?"
+                    name="Subject"
+                    required
                   />
                 </div>
 
@@ -113,14 +140,17 @@ const Contact = () => {
                   <textarea
                     className="input textarea"
                     placeholder="Describe your query..."
+                    name="Message"
+                    required
                   />
                 </div>
 
-                <button className="registerBtn mt-4">
+                <button className="registerBtn mt-4"  type="submit">
                   <FaPaperPlane /> &nbsp; Send Message
                 </button>
 
-              </div>
+                <span className={`${result ? "FormSubmitMessage" : ""} d-flex justify-content-center mt-4`}>{result}</span>
+              </form>
 
             </div>
 

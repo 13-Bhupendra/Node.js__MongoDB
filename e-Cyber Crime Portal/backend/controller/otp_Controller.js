@@ -57,6 +57,8 @@ export const verifyOTPForCreatePassword = async (req, res)=> {
             return res.json({status : false , message : "OTP is expired !"});
         }
 
+        await OTP_Collection.deleteMany({email});
+
         const hashedPassword = await bcrypt.hash(newPassword , 12);
         await Auth_Collection.updateOne({email } , {$set : {
             password : hashedPassword

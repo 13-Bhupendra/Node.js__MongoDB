@@ -24,6 +24,8 @@ import ResetForgetPassword from "../pages/public/ResetForgetPassword.jsx";
 import AdminProfile from "../pages/admin/AdminProfile.jsx";
 import InvestigatorProfile from "../pages/investigator/InvestigatorProfile.jsx";
 import axios from "axios";
+import OtpVerify_CreatePassword from "../pages/public/OtpVerify_CreatePassword.jsx";
+import ChangePassword from "../pages/public/ChangePassword.jsx";
 
 const AllRoutes = () => {
   const [role, setRole] = useState(undefined);
@@ -40,7 +42,7 @@ const AllRoutes = () => {
   }
 
   useEffect(() => {
-    getUser();;
+    getUser();
   }, []);
 
   if (role === undefined) return null;
@@ -52,6 +54,8 @@ const AllRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/auth/changePassword" element={<ChangePassword />} />
+
 
         {/*Auth Routes */}
       {role === null &&   (<>
@@ -59,6 +63,7 @@ const AllRoutes = () => {
             <Route path="/auth/signin" element={<Signin />} />
             <Route path="/auth/otp/verify" element={<Otp_Verification />} />
             <Route path="/auth/reset/forget/password" element={<ResetForgetPassword />} />
+            <Route path="/auth/otp/verify/create/newPassword" element={<OtpVerify_CreatePassword />} />
           </> )}
 
         {/* USER */}

@@ -11,7 +11,7 @@ const Signin = () => {
   const [password , setPassword] = useState("")
   const [isOtpSending , setIsOtpSending] = useState(false)
   const [error , setError] = useState({});
-  const [globalMsg, setGlobalMsg] = useState(""); 
+  // const [globalMsg, setGlobalMsg] = useState(""); 
 
   const navigate = useNavigate();
   const BASE_URL = import.meta.env.VITE_BACKEND_SERVER_URL

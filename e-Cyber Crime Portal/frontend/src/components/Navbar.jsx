@@ -3,12 +3,40 @@ import "../style/navbar.css"
 import { FaRegUser } from "react-icons/fa";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { CiCircleList } from "react-icons/ci";
+import axios from 'axios';
 
 const Navbar = ({PageName}) => {
+  const BASE_URL = import.meta.env.VITE_BACKEND_SERVER_URL;
 
   const [time , setTime] = useState( new Date().toLocaleTimeString());
+  const [user , setUser] = useState({
+    name : "Guest",
+    email : "www.guest999@gmail.com"
+  })
+
+  const fetchUser = async ()=>{
+    try {
+        const res = await axios.get(`${BASE_URL}/api/me` , {withCredentials : true})
+
+
+        if(res.data.status){
+          setUser({
+            name : res.data.user.name ,
+            email : res.data.user.email
+          })
+        }
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   
+
+
    useEffect(() => {
+      fetchUser()
+
       const interval = setInterval(() => {
         setTime(new Date().toLocaleTimeString());
       }, 1000);
@@ -34,8 +62,8 @@ const Navbar = ({PageName}) => {
                                   <FaRegUser />
                             </div>
                             <div className='profileLogoText ps-3'>
-                              <h6 className='m-0' style={{color : "lightCyan"}}>Bhupendra patil </h6>
-                              <span className='' style={{color : "lightGray" , fontSize:"12px"}}>+1 04582 96847</span>
+                              <h6 className='m-0' style={{color : "lightCyan"}}>{user.name} </h6>
+                              <span className='' style={{color : "lightGray" , fontSize:"12px"}}>{user.email}</span>
                             </div>
                       </div>
             </section>

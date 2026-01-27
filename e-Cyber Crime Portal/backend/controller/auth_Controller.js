@@ -95,7 +95,7 @@ export const resetForgetPassword = async (req , res )=>{
     const {email} = req.body;
     const user = await Auth_Collection.findOne({email})
         if(!user){
-            return res.status(400).json({status : false , message : "User not found !"});
+            return res.status(400).json({status : false , message : "User not found , Enter valid Email !"});
     }
 
     const isOtpSent  = await otpSender(email);

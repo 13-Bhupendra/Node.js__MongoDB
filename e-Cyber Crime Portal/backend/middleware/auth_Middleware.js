@@ -5,7 +5,7 @@ import dotenv from "dotenv"
 dotenv.config()
 
 /*=================validate Signup middleware ==============*/
-export const validateSignupReq = async (req ,res , next)=>{a
+export const validateSignupReq = async (req ,res , next)=>{
     const {name , email , password , role } = req.body
     let isvalid = true
     const errors = {}
@@ -92,6 +92,33 @@ export const validateSigninReq = async (req, res , next)=>{
             errors,
         });
         }
+
+    next()
+}
+
+//===================== change password middleware===============
+export const validateChangePassword = async (req ,res , next)=>{
+        
+    const {email , oldPassword , newPassword} = req.body;
+     const user = await Auth_Collection.findOne({email})
+    
+     if(!user){
+            return res.status(400).json({status : false , message : "*User not found !"});
+    }
+    
+    const isMatch = await bcrypt.compare(oldPassword , user.password);
+    if(!isMatch){
+        return res.status(400).json({status : false , message : "*Password dos'nt Match to old Password !"});
+    }
+
+    const passwordRegx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$/;
+    if(!passwordRegx.test(newPassword)){
+        return res.status(400).json({status : false , message : "*Password must be minimum 6 characters and contain letters and numbers"});
+    }
+
+    if(newPassword === oldPassword){
+        return res.status(400).json({status : false , message : "*New password cannot be the same as the old password"});
+    }
 
     next()
 }

@@ -23,17 +23,18 @@
     height: 120px;
     width: 120px;
     border-radius: 50%;
-    background-color: #1b2a4c;
+    background-color: #30426c;
     position: relative;
     top: -40px;
-    border: 4px solid #0f1b2c;
+    border: 4px solid var(--borderColor);
     overflow: hidden;
 }
 
-.profileImage img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+.profileLetter {
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .profileInfo {
@@ -160,6 +161,11 @@
     padding: 10px;
     border-bottom: 1px solid #1667b2;
     margin-top: 6px;
+}
+
+.formContent input ::placeholder
+{
+    color: gray;
 }
 
 .updateBtn {

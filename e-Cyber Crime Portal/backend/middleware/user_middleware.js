@@ -1,65 +1,53 @@
-// import { UserProfile_Collection } from "../model/userProfile_model";
+/*================= Validate User Profile Form Middleware ==============*/
+export const validateUserProfileForm = (req, res, next) => {
 
-/*=================validate User Profile Form middleware ==============*/
-export const validateUserProfileForm = (req , res ,next)=>{
-    const {email , name  , phone , pincode , address , city , state} = req.body;
-    let isvalid = true 
-    const errors = {}
+  const { phone, pincode, address, city, state } = req.body;
 
-    if(!phone || !pincode || !address || !city || !state) {
-        errors.fields =  "*All fields must be required !"
-        isvalid = false;
-    }
+  let isValid = true;
+  const errors = {};
 
-    const nameRegx = /^[A-Za-z ]{5,30}$/;
-    const phoneRegx = /^[6-9]\d{9}$/;
-    const pincodeRegx = /^\d{6}$/;
-    const addressRegx = /^[A-Za-z0-9\s,./-]{10,}$/;
-    const cityRegx = /^[A-Za-z\s]{3,}$/;
-    const stateRegx = /^[A-Za-z\s]{3,}$/;
+  const phoneRegx = /^[6-9]\d{9}$/;
+  const pincodeRegx = /^\d{6}$/;
+  const addressRegx = /^[A-Za-z0-9\s,./-]{10,}$/;
+  const cityRegx = /^[A-Za-z\s]{3,}$/;
+  const stateRegx = /^[A-Za-z\s]{3,}$/;
 
-    // name
-    if (!nameRegx.test(name)) {
-    errors.name = "*Name must be 5–30 letters only";
-    isvalid = false;
-    }
-
-    // phone
-    if (!phoneRegx.test(phone)) {
+  // phone
+  if (!phone || !phoneRegx.test(phone)) {
     errors.phone = "*Enter valid 10-digit Indian mobile number";
-    isvalid = false;
-    }
+    isValid = false;
+  }
 
-    // pincode
-    if (!pincodeRegx.test(pincode)) {
+  // pincode
+  if (!pincode || !pincodeRegx.test(pincode)) {
     errors.pincode = "*Enter valid 6-digit pincode";
-    isvalid = false;
-    }
+    isValid = false;
+  }
 
-    // address
-    if (!addressRegx.test(address)) {
+  // address
+  if (!address || !addressRegx.test(address)) {
     errors.address = "*Address must be at least 10 characters";
-    isvalid = false;
-    }
+    isValid = false;
+  }
 
-    // city
-    if (!cityRegx.test(city)) {
+  // city
+  if (!city || !cityRegx.test(city)) {
     errors.city = "*City must contain minimum 3 letters";
-    isvalid = false;
-    }
+    isValid = false;
+  }
 
-    // state
-    if (!stateRegx.test(state)) {
+  // state
+  if (!state || !stateRegx.test(state)) {
     errors.state = "*State must contain minimum 3 letters";
-    isvalid = false;
-    }
+    isValid = false;
+  }
 
-    if(!isvalid){
-        return res.status(400).json({
-            status: false,
-            errors,
-         });
-    }
+  if (!isValid) {
+    return res.status(400).json({
+      status: false,
+      errors,
+    });
+  }
 
-    next()
-}
+  next();
+};
