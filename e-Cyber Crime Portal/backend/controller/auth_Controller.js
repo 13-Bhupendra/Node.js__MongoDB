@@ -2,6 +2,8 @@ import { Auth_Collection } from "../model/auth_model.js";
 import bcrypt from 'bcrypt'
 import { otpSender } from "../service/otp_service.js";
 import { UserProfile_Collection } from "../model/userProfile_model.js";
+import { adminProfile_Collection } from "../model/adminProfile_model.js";
+import { investigatorProfile_Collection } from "../model/investigatorProfile_model.js";
 
 /*================= Signup Controller ===============*/
 export const signup = async (req ,res)=>{
@@ -33,6 +35,21 @@ export const signin = async (req ,res)=>{
         if(!isMatch){
                 return res.status(400).json({status : false , message : "Incorrect password !"});
         }
+
+        if(user.role === "admin"){
+            const adminExists = await adminProfile_Collection.findOne({email}) ;
+            if(!adminExists){
+                await adminProfile_Collection.create({name : user.name , email : user.email , role : user.role})
+            }
+        }
+
+        if(user.role === "investigator"){
+             const investigatorExists = await investigatorProfile_Collection.findOne({email}) ;
+            if(!investigatorExists){
+                await investigatorProfile_Collection.create({name : user.name , email : user.email , role : user.role})
+            }
+        }
+
 
         const isOtpSent = await otpSender(email)
         if(!isOtpSent.status){

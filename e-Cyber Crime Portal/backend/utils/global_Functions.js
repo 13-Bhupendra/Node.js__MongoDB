@@ -1,4 +1,4 @@
-const latterToNumber = (name)=>{
+const letterToNumber = (name)=>{
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let code = "";
 
@@ -12,4 +12,4 @@ const latterToNumber = (name)=>{
         return console.log(code);
     }
   
-    latterToNumber("bhupendra")
+    letterToNumber("bhupendra")

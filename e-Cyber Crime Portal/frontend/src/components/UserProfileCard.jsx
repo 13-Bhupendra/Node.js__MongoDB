@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ProfileImage from "../assets/images/profIcon.png";
-import {
-  MdOutlineMailOutline,
-  MdLocationOn,
-  MdOutlineLogout,
-} from "react-icons/md";
+import {MdOutlineMailOutline,MdLocationOn,MdOutlineLogout,} from "react-icons/md";
 import { LuPhone } from "react-icons/lu";
-import {
-  FaUser,
-  FaHashtag,
-  FaCity,
-  FaMapMarkedAlt,
-} from "react-icons/fa";
+import {FaUser,FaHashtag,FaCity,FaMapMarkedAlt,} from "react-icons/fa";
 import { BsShieldExclamation } from "react-icons/bs";
 import { FiEdit2 } from "react-icons/fi";
 import axios from "axios";
@@ -31,13 +22,13 @@ const UserProfileCard = () => {
   const [state, setState] = useState("");
   const [errors, setErrors] = useState({});
 
-  const firstLetter = name.substring(0,1).toUpperCase();
+  const firstLetter = name.charAt(1).toUpperCase();
 
   /* ================= Fetch User ================= */
   const fetchUser = async () => {
     try {
       const res = await axios.get(
-        `${BASE_URL}/api/profile/details`,
+        `${BASE_URL}/api/userProfile/details`,
         { withCredentials: true }
       );
 
@@ -63,7 +54,7 @@ const UserProfileCard = () => {
 
     try {
       const res = await axios.put(
-        `${BASE_URL}/api/update/profile/details`,
+        `${BASE_URL}/api/update/userProfile/details`,
         { phone, pincode, address, city, state },
         { withCredentials: true }
       );
@@ -185,7 +176,7 @@ const UserProfileCard = () => {
               <div className="formIcon"><LuPhone /></div>
               <div className="formContent">
                 <label>PHONE</label>
-                <input value={phone} onChange={(e) => setPhone(e.target.value)} />
+                <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Enter your mobile number"/>
                 {errors.phone && (
                   <p className="p-0 m-0 mt-1" style={{ color: "red", fontSize: "12px" }}>
                     {errors.phone}
@@ -215,7 +206,7 @@ const UserProfileCard = () => {
               <div className="formIcon"><FaHashtag /></div>
               <div className="formContent">
                 <label>PINCODE</label>
-                <input value={pincode} onChange={(e) => setPincode(e.target.value)} />
+                <input type="number" value={pincode} onChange={(e) => setPincode(e.target.value)}  placeholder="Enter Pincode e.g. 400001"/>
                 {errors.pincode && (
                   <p className="p-0 m-0 mt-1" style={{ color: "red", fontSize: "12px" }}>
                     {errors.pincode}
@@ -228,7 +219,7 @@ const UserProfileCard = () => {
               <div className="formIcon"><MdLocationOn /></div>
               <div className="formContent">
                 <label>ADDRESS</label>
-                <input value={address} onChange={(e) => setAddress(e.target.value)} />
+                <input value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Enter your address"/>
                 {errors.address && (
                   <p className="p-0 m-0 mt-1" style={{ color: "red", fontSize: "12px" }}>
                     {errors.address}
@@ -241,7 +232,7 @@ const UserProfileCard = () => {
               <div className="formIcon"><FaCity /></div>
               <div className="formContent">
                 <label>CITY</label>
-                <input value={city} onChange={(e) => setCity(e.target.value)} />
+                <input value={city} onChange={(e) => setCity(e.target.value)} placeholder="Enter your city"/>
                 {errors.city && (
                   <p className="p-0 m-0 mt-1" style={{ color: "red", fontSize: "12px" }}>
                     {errors.city}
@@ -254,7 +245,7 @@ const UserProfileCard = () => {
               <div className="formIcon"><FaMapMarkedAlt /></div>
               <div className="formContent">
                 <label>STATE</label>
-                <input value={state} onChange={(e) => setState(e.target.value)} />
+                <input value={state} onChange={(e) => setState(e.target.value)} placeholder="Enter your state"/>
                 {errors.state && (
                   <p className="p-0 m-0 mt-1" style={{ color: "red", fontSize: "12px" }}>
                     {errors.state}

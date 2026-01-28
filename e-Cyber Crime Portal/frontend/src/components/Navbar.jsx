@@ -18,7 +18,6 @@ const Navbar = ({PageName}) => {
     try {
         const res = await axios.get(`${BASE_URL}/api/me` , {withCredentials : true})
 
-
         if(res.data.status){
           setUser({
             name : res.data.user.name ,
