@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ProfileImage from "../assets/images/profIcon.png"
 import { MdOutlineMailOutline, MdLocationOn, MdOutlineLogout } from "react-icons/md";
 import { LuPhone } from "react-icons/lu";
-import { FaUser, FaHashtag, FaCity, FaMapMarkedAlt  , FaUserTie } from "react-icons/fa";
+import { FaUser, FaHashtag, FaCity, FaMapMarkedAlt  , FaUserTie , } from "react-icons/fa";
 import { BsShieldExclamation } from "react-icons/bs";
 import { FiEdit2 } from "react-icons/fi";
 import axios from 'axios';
@@ -27,7 +27,6 @@ const AdminProfileCard = () => {
     const fetchedAdmin = async ()=>{
       try {
           const res = await axios.get(`${BASE_URL}/api/adminProfile/details` , {withCredentials : true})
-        console.log(res.data.admin)
 
           if(res.data.status){
             const a = res.data.admin;
@@ -58,6 +57,7 @@ const AdminProfileCard = () => {
       } catch (error) {
         if(error.response?.data?.errors){
           setErrors(error.response.data.errors);
+          console.log(errors)
         }
       }
     }
@@ -160,7 +160,7 @@ const AdminProfileCard = () => {
                 <input value={phone} type='tel' onChange={(e)=>setPhone(e.target.value)} placeholder='Enter your mobile number'/>
                  {errors.phone && (
                   <p className="p-0 m-0 mt-1" style={{ color: "red", fontSize: "12px" }}>
-                    {errors.phone}
+                    {errors.personalPhone}
                   </p>
                 )}
               </div>

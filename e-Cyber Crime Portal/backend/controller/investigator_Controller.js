@@ -2,17 +2,30 @@ import { investigatorProfile_Collection } from "../model/investigatorProfile_mod
 
 /*=========== get investigator profile ===========*/
 export const getInvestigatorProfile = async (req ,res)=>{
+    try {
+        const email = req.user.email 
 
+        const investigator = await investigatorProfile_Collection.findOne({email})
+
+         if(!investigator){
+            return res.status(401).json({status : false , message : "investigator not found ! "});
+        }
+
+        res.status(200).json({status : true , message : "Investigator profile fetched successfuly  !" , investigator})
+
+    } catch (error) {
+        res.status(500).json({status : false , message : "Investigator profile fetched falied  !" , error })
+    }
 }
 
 /*=========== update investigator profile ==============*/
 export const updateInvestigatorProfile = async (req ,res )=>{
     try {
         const email = req.user.email
-        const {investigatorId , personalPhone , officialPhone , officeEmail , pincode , address , city , state , department , designation , joiningDate} = req.body
+        const {personalPhone , officialPhone , officeEmail , pincode , address , city , state , department , designation , joiningDate} = req.body
 
         const investigator = await investigatorProfile_Collection.findOneAndUpdate({email} ,
-            {$set : {investigatorId , personalPhone , officeEmail , officialPhone , pincode , address , city , state , department , designation , joiningDate}},
+            {$set : { personalPhone , officeEmail , officialPhone , pincode , address , city , state , department , designation , joiningDate}},
             {new : true}
         )
 
