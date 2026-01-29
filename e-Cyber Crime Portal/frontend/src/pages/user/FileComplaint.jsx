@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../components/Navbar.jsx";
 import Footer from "../../components/Footer.jsx";
 import { FaFileUpload, FaUser, FaUserFriends, FaVenusMars, FaHeading, FaAlignLeft, FaExclamationTriangle, FaCalendarAlt, FaClock, FaGlobe, FaDollarSign } from "react-icons/fa";
+import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import "../../style/fileComplaint.css";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const crimeOptions = [
   "Fraud", "Hacking", "Phishing", "Cyber Bullying", "Identity Theft",
@@ -14,6 +17,56 @@ const websiteOptions = [
 ];
 
 const FileComplaint = () => {
+
+  const navigate = useNavigate();
+  const BASE_URL = import.meta.env.VITE_BACKEND_SERVER_URL
+
+
+  const [fullName , setFullName] = useState("");
+  const [fatherOrMotherName , setFatherOrMotherName] = useState("");
+  const [gender , setGender] = useState("");
+  const [title , setTitle] = useState("");
+  const [description , setDescription] = useState("");
+  const [crimeType , setCrimeType] = useState("");
+  const [incidentDate , setIncidentDate] = useState("");
+  const [incidentTime , setIncidentTime] = useState("")
+  const [websiteOrAppName , setWebsiteOrAppName] = useState("");
+  const [amountLost , setAmountLost] = useState(0);
+  const [image , setImage] = useState(null);
+
+  /*handle add and filed complaints */
+  const handleFiledComplaint = async ()=>{
+
+    const formData = new FormData();
+    formData.append("fullName", fullName);
+    formData.append("fatherOrMotherName", fatherOrMotherName);
+    formData.append("gender", gender);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("crimeType", crimeType);
+    formData.append("incidentDate", incidentDate);
+    formData.append("incidentTime", incidentTime);
+    formData.append("websiteOrAppName", websiteOrAppName);
+    formData.append("amountLost", amountLost);
+
+    if (image) {
+      formData.append("image", image);
+    }
+
+    try {
+
+        const res = await axios.post(`${BASE_URL}/api/add-Complaint` , formData , {withCredentials : true});
+      console.log(res.data)
+        if(res.data.status){
+          alert("Complaint Filed Successfull !")
+          setFullName(""),setFatherOrMotherName(""),setGender(""),setTitle(""),setDescription("")
+          ,setCrimeType(""),setIncidentDate(""),setIncidentTime(""),setWebsiteOrAppName(""),setImage(null)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
   return (
     <div className="mainSection">
       <Navbar PageName="File Complaint" />
@@ -32,13 +85,13 @@ const FileComplaint = () => {
               <div className="formIcon"><FaUser /></div>
               <div className="formContent">
                 <label>Full Name</label>
-                <input type="text" placeholder="Enter your full name" />
+                <input value={fullName} type="text" placeholder="Enter your full name" onChange={(e)=> setFullName(e.target.value)} />
               </div>
 
               <div className="formIcon"><FaUserFriends /></div>
               <div className="formContent">
                 <label>Father / Mother Name</label>
-                <input type="text" placeholder="Parent's name" />
+                <input value={fatherOrMotherName} type="text" placeholder="Parent's name"  onChange={(e)=> setFatherOrMotherName(e.target.value)} />
               </div>
             </div>
 
@@ -46,7 +99,7 @@ const FileComplaint = () => {
               <div className="formIcon"><FaVenusMars /></div>
               <div className="formContent">
                 <label>Gender</label>
-                <select>
+                <select value={gender}  onChange={(e)=> setGender(e.target.value)}>
                   <option value="">Select Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -67,13 +120,13 @@ const FileComplaint = () => {
               <div className="formIcon"><FaHeading /></div>
               <div className="formContent">
                 <label>Title</label>
-                <input type="text" placeholder="Complaint title" />
+                <input value={title} type="text" placeholder="Complaint title"  onChange={(e)=> setTitle(e.target.value)} />
               </div>
 
               <div className="formIcon"><FaAlignLeft /></div>
               <div className="formContent">
                 <label>Description</label>
-                <textarea placeholder="Describe the incident" rows="1" />
+                <textarea value={description} placeholder="Describe the incident" rows="1"  onChange={(e)=> setDescription(e.target.value)} />
               </div>
             </div>
 
@@ -81,7 +134,7 @@ const FileComplaint = () => {
               <div className="formIcon"><FaExclamationTriangle /></div>
               <div className="formContent">
                 <label>Crime Type</label>
-                <select>
+                <select value={crimeType}  onChange={(e)=> setCrimeType(e.target.value)}>
                   <option value="">Select Crime Type</option>
                   {crimeOptions.map((c, i) => <option key={i} value={c}>{c}</option>)}
                 </select>
@@ -90,7 +143,7 @@ const FileComplaint = () => {
               <div className="formIcon"><FaGlobe /></div>
               <div className="formContent">
                 <label>Website / App Name</label>
-                <select>
+                <select value={websiteOrAppName}  onChange={(e)=> setWebsiteOrAppName(e.target.value)}>
                   <option value="">Select Website / App</option>
                   {websiteOptions.map((w, i) => <option key={i} value={w}>{w}</option>)}
                 </select>
@@ -101,13 +154,13 @@ const FileComplaint = () => {
               <div className="formIcon"><FaCalendarAlt /></div>
               <div className="formContent">
                 <label>Incident Date</label>
-                <input type="date" />
+                <input type="date"  value={incidentDate}  onChange={(e)=> setIncidentDate(e.target.value)}/>
               </div>
 
               <div className="formIcon"><FaClock /></div>
               <div className="formContent">
                 <label>Incident Time</label>
-                <input type="time" />
+                <input type="time" value={incidentTime}  onChange={(e)=> setIncidentTime(e.target.value)} />
               </div>
             </div>
 
@@ -115,7 +168,7 @@ const FileComplaint = () => {
               <div className="formIcon"><FaDollarSign /></div>
               <div className="formContent">
                 <label>Amount Lost</label>
-                <input type="number" placeholder="Enter amount lost" />
+                <input value={amountLost} type="number"   placeholder="Enter amount lost"  onChange={(e)=> setAmountLost(e.target.value)} />
               </div>
             </div>
           </div>
@@ -128,15 +181,15 @@ const FileComplaint = () => {
             </div>
 
             <div className="evidenceUploadBox d-flex flex-column align-items-center justify-content-center">
-              <FaFileUpload size={40} color="#5dade2" />
-              <p>Click to upload files</p>
-              <p>JPG, PNG, PDF up to 10MB</p>
-              <input type="file" className="evidenceInput" />
+              {image ? <IoCheckmarkDoneCircle  size={40} color="#5dade2" /> : <FaFileUpload size={40} color="#5dade2" />}
+              <p>{image ? "Evidence File Uploaded" : "Click to upload files"}</p>
+              <p>{image ? null  : "JPG, PNG, PDF up to 10MB"}</p>
+              <input type="file" className="evidenceInput"  onChange={(e)=> setImage(e.target.files[0])} />
             </div>
 
             <p className="securityNote mt-3">Files are encrypted and stored securely.</p>
 
-            <button className="updateBtn mt-3">Submit Complaint</button>
+            <button className="updateBtn mt-3" onClick={handleFiledComplaint}>Submit Complaint</button>
           </div>
 
         </div>

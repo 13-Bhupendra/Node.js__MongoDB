@@ -13,7 +13,7 @@ export const addNewComplaint = async (req , res)=>{
         
         return res.status(200).json({status : true , message : "Complaint Filed Successfully !" , result});
     } catch (error) {
-         res.status(200).json({status : false , message : "Complaint not Filed  !" , error});
+         res.status(200).json({status : false , message : "Complaint not Filed  !" , error : error.message});
     }
 }
 

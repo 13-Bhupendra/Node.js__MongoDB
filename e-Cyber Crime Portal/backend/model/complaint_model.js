@@ -15,7 +15,8 @@ const ComplaintSchema = new mongoose.Schema({
   amountLost: {type:Number , required : true},
   fileName: { type: String }, 
   filePath: { type: String },
-  status: {type:String , default : "pending" , required : true}
+  status: {type:String , default : "pending" , required : true},
+  // investigatorId : { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 }, { timestamps: true })
 
 export const Complaint_Collection = mongoose.model("Complaint", ComplaintSchema)
