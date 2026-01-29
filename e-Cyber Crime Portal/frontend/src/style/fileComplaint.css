@@ -1,0 +1,149 @@
+.profileMainContentCard {
+  width: 80%;
+  background: linear-gradient(145deg, #192e4a, #0f1b2c);
+  border-radius: 20px;
+  border: 1px solid #1b2a4c;
+  overflow: hidden;
+}
+
+.profileDetailsCard {
+  background-color: #0F2436;
+  border-radius: 20px;
+  border: 1px solid #1667b2;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.personalHeader {
+  border-bottom: 1px solid #1667b2;
+  border-top: 1px solid #1667b2;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.personalHeader h5 {
+  color: lightcyan;
+  margin-bottom: 4px;
+}
+
+.personalHeader p {
+  font-size: 13px;
+  color: #9fb6d4;
+}
+
+.formRow {
+  display: flex;
+  gap: 15px;
+  padding: 14px 0;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.formIcon {
+  width: 38px;
+  height: 38px;
+  background-color: #090E1A;
+  border-radius: 10px;
+  color: #5dade2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #1667b2;
+}
+
+.formContent {
+  flex: 1;
+  width: 100%;
+}
+
+.formContent label {
+  color: lightcyan;
+  font-size: 13px;
+}
+
+.formContent input,
+.formContent select,
+.formContent textarea {
+  width: 100%;
+  height: 45px;
+  background-color: #090E1A;
+  color: lightgray;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #1667b2;
+  margin-top: 6px;
+}
+
+textarea.formContent {
+  resize: none;
+  height: 60px;
+}
+
+.updateBtn {
+  width: 100%;
+  height: 48px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #1667b2, #0b3c66);
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.updateBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(22, 103, 178, 0.4);
+}
+
+.evidenceUploadBox {
+  border: 2px dashed #1667b2;
+  border-radius: 12px;
+  width: 100%;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #5dade2;
+  position: relative;
+}
+
+.evidenceUploadBox p {
+  margin: 2px 0;
+}
+
+.evidenceInput {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.securityNote {
+  margin-top: 10px;
+  background-color: #0F2436;
+  border-radius: 10px;
+  border: 1px solid #1667b2;
+  padding: 12px;
+  color: #9fb6d4;
+  font-size: 12px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .formRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .formIcon {
+    margin-bottom: 6px;
+  }
+}

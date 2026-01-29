@@ -219,7 +219,7 @@ const UserProfileCard = () => {
               <div className="formIcon"><MdLocationOn /></div>
               <div className="formContent">
                 <label>ADDRESS</label>
-                <input value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Enter your address"/>
+                <textarea value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Enter your address"/>
                 {errors.address && (
                   <p className="p-0 m-0 mt-1" style={{ color: "red", fontSize: "12px" }}>
                     {errors.address}
