@@ -1,8 +1,27 @@
 import { Complaint_Collection } from "../model/complaint_model.js";
 
 
-/*=============== Get All Complaints controller ===========*/
-export const getAllComplaints = async (req , res)=>{
+/*================ fetched all the comlaints ================*/
+export const getComplaintsData = async(req ,res)=>{
+    try {
+        const complaints = await Complaint_Collection.find().populate("userId" , "email name")
+       if (complaints.length === 0) {
+            return res.status(200).json({
+                status: false,
+                message: "No complaints filed yet"
+            });
+        }
+
+        res.status(200).json({status : true , message : "All complaints Fetched successfully" , complaints});
+
+    } catch (error) {
+        res.status(500).json({status : false , message : "All complaints Fetched failed" , error});
+    }
+}
+
+
+/*=============== Get All Complaints as per user controller ===========*/
+export const getAllComplaintsOfUser = async (req , res)=>{
     const id = req.user._id;
     try {
         const complaints = await Complaint_Collection.find({userId : id});
@@ -26,7 +45,8 @@ export const getSingleComplaint = async (req ,res)=>{
     const id = req.query.id;
 
     try {
-        const complaint = await Complaint_Collection.findById(id);
+        const complaint = await Complaint_Collection.findById(id)
+        // .populate("assignedInvestigator" , "email name , role");
         
         res.status(200).json({status : true , message : "View Single Complaint !" , complaint});
     } catch (error) {

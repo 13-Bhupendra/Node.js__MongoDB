@@ -27,6 +27,7 @@ import axios from "axios";
 import OtpVerify_CreatePassword from "../pages/public/OtpVerify_CreatePassword.jsx";
 import ChangePassword from "../pages/public/ChangePassword.jsx";
 import UserComplaintDetails from "../pages/user/UserComplaintDetails.jsx"
+import ManageComplaints from "../pages/admin/ManageComplaints.jsx";
 
 const AllRoutes = () => {
   const [role, setRole] = useState(undefined);
@@ -94,6 +95,7 @@ const AllRoutes = () => {
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="manage/users" element={<ManageUsers />} />
             <Route path="manage/investigators" element={<ManageInvestigators />} />
+            <Route path="manage/complaints" element={<ManageComplaints />} />
             <Route path="profile" element={<AdminProfile />} />
           </Route>
 

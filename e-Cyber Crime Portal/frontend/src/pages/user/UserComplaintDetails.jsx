@@ -114,7 +114,7 @@ const UserComplaintDetails = () => {
                 </div>
                 <div className="col-md-6">
                   <span className="label">Amount Lost</span>
-                  <p className="value danger">{"₹" + complaint.amountLost ?? "0"}</p>
+                  <p className="value danger">{"₹" + complaint.amountLost  || ""}</p>
                 </div>
               </div>
             </div>

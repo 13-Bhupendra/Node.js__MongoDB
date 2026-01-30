@@ -16,6 +16,7 @@ import { PiNoteLight } from "react-icons/pi";
 import { BsCardChecklist } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { RiUserSettingsLine } from "react-icons/ri";
+import { FiClipboard } from "react-icons/fi";
 import axios from 'axios';
 
 
@@ -65,9 +66,10 @@ const Sidebar = () => {
   // Admin menu
   const menuListAdmin = [
     { id: 1, path: "/admin/dashboard", text: "Dashboard", icon: <MdDashboard /> },
-    { id: 2, path: "/admin/manage/users", text: "Manage Users", icon: <FaUsers /> },
-    { id: 3, path: "/admin/manage/investigators", text: "Manage Investigators", icon: <RiUserSettingsLine /> },
-    { id: 4, path: "/admin/profile", text: "Profile", icon: <FaRegUser /> },
+    { id: 2, path: "/admin/manage/complaints", text: "Manage Complaints", icon: <FiClipboard /> },
+    { id: 3, path: "/admin/manage/users", text: "Manage Users", icon: <FaUsers /> },
+    { id: 4, path: "/admin/manage/investigators", text: "Manage Investigators", icon: <RiUserSettingsLine /> },
+    { id: 5, path: "/admin/profile", text: "Profile", icon: <FaRegUser /> },
   ];
 
   // auth pages menu list

@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 
 const ComplaintSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "authCollection" },
   complaintId: {type:String , unique : true , default : ()=> "URID-" + Date.now()},
   fullName: {type:String , required : true},
   fatherOrMotherName: {type:String , required : true},
@@ -16,7 +16,9 @@ const ComplaintSchema = new mongoose.Schema({
   fileName: { type: String }, 
   filePath: { type: String },
   status: {type:String , default : "pending" , required : true},
-  // investigatorId : { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  assignedInvestigator: {type: mongoose.Schema.Types.ObjectId,ref: "investigatorProfileCollection",default: null},
+  investigatorNote: {type : String } 
+
 }, { timestamps: true })
 
 export const Complaint_Collection = mongoose.model("Complaint", ComplaintSchema)
