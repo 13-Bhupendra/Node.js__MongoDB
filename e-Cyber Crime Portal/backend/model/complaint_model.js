@@ -9,7 +9,7 @@ const ComplaintSchema = new mongoose.Schema({
   title: {type:String , required : true},
   description: {type:String , required : true},
   crimeType: {type:String , required : true},
-  incidentDate: {type:Date , required : true},
+  incidentDate: {type:String , required : true},
   incidentTime: {type:String , required : true},
   websiteOrAppName: {type:String , required : true},
   amountLost: {type:Number , required : true},

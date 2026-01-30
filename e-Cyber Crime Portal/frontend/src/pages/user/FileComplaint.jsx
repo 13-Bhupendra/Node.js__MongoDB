@@ -31,8 +31,10 @@ const FileComplaint = () => {
   const [incidentDate , setIncidentDate] = useState("");
   const [incidentTime , setIncidentTime] = useState("")
   const [websiteOrAppName , setWebsiteOrAppName] = useState("");
-  const [amountLost , setAmountLost] = useState(0);
+  const [amountLost , setAmountLost] = useState("");
   const [image , setImage] = useState(null);
+
+  const [error , setError] = useState({})
 
   /*handle add and filed complaints */
   const handleFiledComplaint = async ()=>{
@@ -48,30 +50,29 @@ const FileComplaint = () => {
     formData.append("incidentTime", incidentTime);
     formData.append("websiteOrAppName", websiteOrAppName);
     formData.append("amountLost", amountLost);
-
-    if (image) {
-      formData.append("image", image);
-    }
+    formData.append("image", image);
 
     try {
+        setError({});
 
         const res = await axios.post(`${BASE_URL}/api/add-Complaint` , formData , {withCredentials : true});
-      console.log(res.data)
         if(res.data.status){
           alert("Complaint Filed Successfull !")
           setFullName(""),setFatherOrMotherName(""),setGender(""),setTitle(""),setDescription("")
           ,setCrimeType(""),setIncidentDate(""),setIncidentTime(""),setWebsiteOrAppName(""),setImage(null)
         }
     } catch (error) {
-        console.log(error)
+      if(error.response?.data?.errors){
+          setError(error.response.data.errors)
+      }
     }
   }
 
   return (
     <div className="mainSection">
       <Navbar PageName="File Complaint" />
-
-      <div className="d-flex justify-content-center mt-4 mb-4">
+    
+      <div className="d-flex justify-content-center mt-5 mb-5 ">
         <div className="profileMainContentCard" style={{ width: "80%" }}>
 
           {/* Personal Info */}
@@ -86,12 +87,14 @@ const FileComplaint = () => {
               <div className="formContent">
                 <label>Full Name</label>
                 <input value={fullName} type="text" placeholder="Enter your full name" onChange={(e)=> setFullName(e.target.value)} />
+                {error.fullName && <p className="mt-1" style={{color : "red" , fontSize:"12px"}}>{error.fullName}</p>}
               </div>
 
               <div className="formIcon"><FaUserFriends /></div>
               <div className="formContent">
                 <label>Father / Mother Name</label>
                 <input value={fatherOrMotherName} type="text" placeholder="Parent's name"  onChange={(e)=> setFatherOrMotherName(e.target.value)} />
+                {error.fatherOrMotherName && <p className="mt-1" style={{color : "red" , fontSize:"12px"}}>{error.fatherOrMotherName}</p>}
               </div>
             </div>
 
@@ -105,6 +108,7 @@ const FileComplaint = () => {
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
                 </select>
+                {error.gender && <p className="mt-1" style={{color : "red" , fontSize:"12px"}}>{error.gender}</p>}
               </div>
             </div>
           </div>
@@ -121,12 +125,14 @@ const FileComplaint = () => {
               <div className="formContent">
                 <label>Title</label>
                 <input value={title} type="text" placeholder="Complaint title"  onChange={(e)=> setTitle(e.target.value)} />
+                {error.title && <p className="mt-1" style={{color : "red" , fontSize:"12px"}}>{error.title}</p>}
               </div>
 
               <div className="formIcon"><FaAlignLeft /></div>
               <div className="formContent">
                 <label>Description</label>
                 <textarea value={description} placeholder="Describe the incident" rows="1"  onChange={(e)=> setDescription(e.target.value)} />
+                {error.description && <p className="mt-1" style={{color : "red" , fontSize:"12px"}}>{error.description}</p>}
               </div>
             </div>
 
@@ -138,6 +144,7 @@ const FileComplaint = () => {
                   <option value="">Select Crime Type</option>
                   {crimeOptions.map((c, i) => <option key={i} value={c}>{c}</option>)}
                 </select>
+                {error.crimeType && <p className="mt-1" style={{color : "red" , fontSize:"12px"}}>{error.crimeType}</p>}
               </div>
 
               <div className="formIcon"><FaGlobe /></div>
@@ -147,6 +154,7 @@ const FileComplaint = () => {
                   <option value="">Select Website / App</option>
                   {websiteOptions.map((w, i) => <option key={i} value={w}>{w}</option>)}
                 </select>
+                {error.websiteOrAppName && <p className="mt-1" style={{color : "red" , fontSize:"12px"}}>{error.websiteOrAppName}</p>}
               </div>
             </div>
 
@@ -154,21 +162,26 @@ const FileComplaint = () => {
               <div className="formIcon"><FaCalendarAlt /></div>
               <div className="formContent">
                 <label>Incident Date</label>
-                <input type="date"  value={incidentDate}  onChange={(e)=> setIncidentDate(e.target.value)}/>
+                <input type="text" placeholder="Enter Incident Data e.g. 01/01/2026"  value={incidentDate}  onChange={(e)=> setIncidentDate(e.target.value)}/>
+                {error.incidentDate && <p className="mt-1" style={{color : "red" , fontSize:"12px"}}>
+                   * Enter valid date in DD/MM/YYYY format.<br />
+                   (year ≥ 2000, future dates not allowed)</p>}
               </div>
 
               <div className="formIcon"><FaClock /></div>
               <div className="formContent">
                 <label>Incident Time</label>
                 <input type="time" value={incidentTime}  onChange={(e)=> setIncidentTime(e.target.value)} />
+                {error.incidentTime && <p className="mt-1" style={{color : "red" , fontSize:"12px"}}>{error.incidentTime}</p>}
               </div>
             </div>
 
             <div className="formRow">
               <div className="formIcon"><FaDollarSign /></div>
               <div className="formContent">
-                <label>Amount Lost</label>
-                <input value={amountLost} type="number"   placeholder="Enter amount lost"  onChange={(e)=> setAmountLost(e.target.value)} />
+                <label>Amount Lost (optional)</label>
+                <input value={amountLost} type="number"   placeholder="Enter amount lost"  onChange={(e)=> setAmountLost(Number(e.target.value))} />
+                {error.amountLost && <p className="mt-1" style={{color : "red" , fontSize:"12px"}}>{error.amountLost}</p>}
               </div>
             </div>
           </div>
@@ -185,11 +198,13 @@ const FileComplaint = () => {
               <p>{image ? "Evidence File Uploaded" : "Click to upload files"}</p>
               <p>{image ? null  : "JPG, PNG, PDF up to 10MB"}</p>
               <input type="file" className="evidenceInput"  onChange={(e)=> setImage(e.target.files[0])} />
+              {error.image && <p className="mt-1" style={{color : "red" , fontSize:"12px"}}>{error.image}</p>}
             </div>
 
             <p className="securityNote mt-3">Files are encrypted and stored securely.</p>
 
             <button className="updateBtn mt-3" onClick={handleFiledComplaint}>Submit Complaint</button>
+            {error.fields && <p className=" text-center mt-3" style={{color : "red" , fontSize:"12px"}}>{error.fields}</p>}
           </div>
 
         </div>

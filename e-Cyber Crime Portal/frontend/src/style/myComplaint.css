@@ -1,0 +1,90 @@
+.allComplaintsContainer {
+  min-height: 70vh;
+}
+
+.pageTitle span {
+  height: 30px;
+}
+
+.complaintsTable {
+  margin-top: 25px;
+}
+
+.complaints-table {
+  background: rgba(15, 36, 54, 0.9);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.complaints-table thead {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.complaints-table th,
+.complaints-table td {
+  padding: 14px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.status {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.status.pending {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+}
+
+.status.resolved {
+  background: rgba(40, 167, 69, 0.2);
+  color: #28a745;
+}
+
+.status.inprogress {
+  background: rgba(23, 162, 184, 0.2);
+  color: #17a2b8;
+}
+
+.viewBtn {
+  background: transparent;
+  border: 1px solid var(--borderColor);
+  color: lightcyan;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.viewBtn:hover {
+  background: var(--borderColor);
+  color: white;
+}
+.complaints-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.complaints-table tbody tr:hover td {
+  color: #e6f7ff !important;
+}
+
+@media (max-width: 768px) {
+  .allComplaintsContainer {
+    padding: 20px !important;
+  }
+
+  .complaints-table th,
+  .complaints-table td {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .viewBtn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+}

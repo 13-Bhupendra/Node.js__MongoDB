@@ -1,9 +1,51 @@
 import { Complaint_Collection } from "../model/complaint_model.js";
 
+
+/*=============== Get All Complaints controller ===========*/
+export const getAllComplaints = async (req , res)=>{
+    const id = req.user._id;
+    try {
+        const complaints = await Complaint_Collection.find({userId : id});
+       if (complaints.length === 0) {
+            return res.status(200).json({
+                status: false,
+                message: "No complaints filed yet"
+            });
+        }
+
+        res.status(200).json({status : true , message : "All complaints Fetched successfully" , complaints});
+
+    } catch (error) {
+        res.status(500).json({status : false , message : "All complaints Fetched failed" , error});
+    }
+}
+
+
+/*================get single Complaint data controller =============*/
+export const getSingleComplaint = async (req ,res)=>{
+    const id = req.query.id;
+
+    try {
+        const complaint = await Complaint_Collection.findById(id);
+        
+        res.status(200).json({status : true , message : "View Single Complaint !" , complaint});
+    } catch (error) {
+        res.status(500).json({status : false , message : "Single complaint get failed !" , error});
+    }
+}
+
+
 /*============== add New Complaint ===============*/
 export const addNewComplaint = async (req , res)=>{
     const id = req.user._id;
     try {
+            if (!req.file) {
+            return res.status(400).json({
+                status: false,
+                message: "Evidence file is required",
+            });
+            }
+
         const result = await Complaint_Collection.create({
             userId : id,
             ...req.body,

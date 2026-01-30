@@ -26,6 +26,7 @@ import InvestigatorProfile from "../pages/investigator/InvestigatorProfile.jsx";
 import axios from "axios";
 import OtpVerify_CreatePassword from "../pages/public/OtpVerify_CreatePassword.jsx";
 import ChangePassword from "../pages/public/ChangePassword.jsx";
+import UserComplaintDetails from "../pages/user/UserComplaintDetails.jsx"
 
 const AllRoutes = () => {
   const [role, setRole] = useState(undefined);
@@ -76,6 +77,7 @@ const AllRoutes = () => {
           <Route path="dashboard" element={<UserDashboard />} />
           <Route path="file/complaint" element={<FileComplaint />} />
           <Route path="complaints" element={<MyComplaint />} />
+          <Route path="complaint/detail/:id" element={<UserComplaintDetails />} />
           <Route path="profile" element={<UserProfile />} />
         </Route>
 

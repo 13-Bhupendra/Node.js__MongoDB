@@ -39,7 +39,10 @@ const Contact = () => {
 
       <div className="container contactPage mb-5 p-5">
 
-        <h2 className="pageTitle">Contact Us</h2>
+         <h2 className="pageTitle d-flex align-items-center gap-3" style={{ color: "lightcyan" }}>
+            <span style={{ borderLeft: "5px solid var(--borderColor)" }}></span>
+            Contact
+          </h2>
         <p className="pageSub">
           Have questions? Reach out to our support team.
         </p>
