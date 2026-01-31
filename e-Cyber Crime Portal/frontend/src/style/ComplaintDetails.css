@@ -42,11 +42,22 @@
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 12px;
+  text-transform: capitalize;
 }
 
 .statusBadge.pending {
-  background: #1f4e63;
-  color: #7dd3fc;
+  background: rgba(255, 193, 7, 0.2);
+  color: #facc15;
+}
+
+.statusBadge.assigned {
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+}
+
+.statusBadge.resolved {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
 }
 
 .infoGrid {
@@ -101,11 +112,6 @@
 .iconWrap.investigator {
   background: #1f3b2d;
   color: #4ade80;
-}
-
-.iconWrap.status {
-  background: #3a1f2d;
-  color: #fb7185;
 }
 
 .desc {
@@ -181,11 +187,48 @@
   background-color: #0f2436;
   border: 1px solid #1e4f7a;
   border-radius: 8px;
-  flex-shrink: 0;
 }
 
 .sectionIcon svg {
   font-size: 16px;
   color: #4fc3f7;
+}
+
+.assignModal {
+  background: #0f2436;
+  border-radius: 14px;
+  color: #e5f2ff;
+}
+
+.assignModal .modal-title {
+  color: lightcyan;
+}
+
+.assignModal .modal-header {
+  border-bottom: 1px solid #1e3a5f;
+}
+
+.assignModal .modal-footer {
+  border-top: 1px solid #1e3a5f;
+}
+
+.modalLabel {
+  font-size: 12px;
+  color: #7dd3fc;
+  margin-bottom: 6px;
   display: block;
+}
+
+.modalSelect {
+  width: 100%;
+  padding: 8px 10px;
+  background: #091b2a;
+  border: 1px solid #1e4f7a;
+  color: #e6f1ff;
+  border-radius: 8px;
+}
+
+.modalSelect:focus {
+  outline: none;
+  border-color: #38bdf8;
 }

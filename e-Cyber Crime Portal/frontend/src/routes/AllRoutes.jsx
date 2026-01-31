@@ -28,6 +28,7 @@ import OtpVerify_CreatePassword from "../pages/public/OtpVerify_CreatePassword.j
 import ChangePassword from "../pages/public/ChangePassword.jsx";
 import UserComplaintDetails from "../pages/user/UserComplaintDetails.jsx"
 import ManageComplaints from "../pages/admin/ManageComplaints.jsx";
+import AdminComplaintDetails from "../pages/admin/AdminComplaintDetails.jsx";
 
 const AllRoutes = () => {
   const [role, setRole] = useState(undefined);
@@ -96,6 +97,7 @@ const AllRoutes = () => {
             <Route path="manage/users" element={<ManageUsers />} />
             <Route path="manage/investigators" element={<ManageInvestigators />} />
             <Route path="manage/complaints" element={<ManageComplaints />} />
+          <Route path="complaint/detail/:id" element={<AdminComplaintDetails />} />
             <Route path="profile" element={<AdminProfile />} />
           </Route>
 

@@ -1,4 +1,18 @@
 import { investigatorProfile_Collection } from "../model/investigatorProfile_model.js";
+import {Auth_Collection} from "../model/auth_model.js"
+
+// ============== Get all investigator data controller =============*/
+export const getAllInvestigatorsData = async (req, res)=>{
+    try {
+        const investigators = await Auth_Collection.find({role : "investigator"});
+
+         res.status(200).json({status : true , message : "Investigators fetched successfully !" , investigators});
+    } catch (error) {
+         res.status(500).json({status : false , message : "Investigators fetched failed !" , error});
+    }
+}
+
+
 
 /*=========== get investigator profile ===========*/
 export const getInvestigatorProfile = async (req ,res)=>{

@@ -75,13 +75,13 @@ const  ManageComplaints = () => {
                     <td>NAME : {el.userId.name}<br />{el.userId.email}</td> 
                     <td>{el.title}</td>
                     <td>{el.crimeType}</td>
-                    <td>{el.assignedInvestigator ||  "Not Assigned"}</td>
+                    <td>{el.assignedInvestigator?.email || "Not Assigned"}</td>
                     <td>{el.incidentDate}</td>
                     <td>
                       <span className={`status ${el.status}`}>{el.status}</span>
                     </td>
                     <td>
-                      <button className="viewBtn">View</button>
+                      <button className="viewBtn" onClick={()=>navigate(`/admin/complaint/detail/${el._id}`)}>View & Assign</button>
                     </td>
                   </tr>
                 ))

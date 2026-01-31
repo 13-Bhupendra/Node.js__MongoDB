@@ -4,7 +4,8 @@ import { Complaint_Collection } from "../model/complaint_model.js";
 /*================ fetched all the comlaints ================*/
 export const getComplaintsData = async(req ,res)=>{
     try {
-        const complaints = await Complaint_Collection.find().populate("userId" , "email name")
+        const complaints = await Complaint_Collection.find().populate("userId" , "email name").populate("assignedInvestigator" , "email name");
+
        if (complaints.length === 0) {
             return res.status(200).json({
                 status: false,
@@ -46,7 +47,7 @@ export const getSingleComplaint = async (req ,res)=>{
 
     try {
         const complaint = await Complaint_Collection.findById(id)
-        // .populate("assignedInvestigator" , "email name , role");
+        .populate("assignedInvestigator" , "email name");
         
         res.status(200).json({status : true , message : "View Single Complaint !" , complaint});
     } catch (error) {
@@ -80,3 +81,20 @@ export const addNewComplaint = async (req , res)=>{
 }
 
 
+
+/*=============== Assign Complaint to Investigator Controller =============*/
+export const assignComplaintToInvestigator = async (req , res ) =>{
+    const {id , investigatorId} = req.body
+    try {
+        const updatedComplaint = await Complaint_Collection.findByIdAndUpdate(id , 
+            {
+                assignedInvestigator : investigatorId,
+                status : "assigned"
+            }
+        )
+        
+         res.status(200).json({status : true , message : "Investigator Assigned Successfull !" , updatedComplaint})
+    } catch (error) {
+         res.status(500).json({status : false , message : "Investigator not Assigned !"})
+    }
+}

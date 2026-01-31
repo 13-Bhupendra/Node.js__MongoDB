@@ -16,8 +16,8 @@ const ComplaintSchema = new mongoose.Schema({
   fileName: { type: String }, 
   filePath: { type: String },
   status: {type:String , default : "pending" , required : true},
-  assignedInvestigator: {type: mongoose.Schema.Types.ObjectId,ref: "investigatorProfileCollection",default: null},
-  investigatorNote: {type : String } 
+  assignedInvestigator: {type: mongoose.Schema.Types.ObjectId,ref: "authCollection",default: null},
+  investigatorNote: {type : String , default : null} 
 
 }, { timestamps: true })
 

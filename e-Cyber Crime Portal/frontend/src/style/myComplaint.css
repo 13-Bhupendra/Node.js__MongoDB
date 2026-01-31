@@ -37,17 +37,17 @@
 
 .status.pending {
   background: rgba(255, 193, 7, 0.2);
-  color: #ffc107;
+  color: #facc15;
+}
+
+.status.assigned {
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
 }
 
 .status.resolved {
-  background: rgba(40, 167, 69, 0.2);
-  color: #28a745;
-}
-
-.status.inprogress {
-  background: rgba(23, 162, 184, 0.2);
-  color: #17a2b8;
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
 }
 
 .viewBtn {
@@ -64,6 +64,7 @@
   background: var(--borderColor);
   color: white;
 }
+
 .complaints-table tbody tr:hover {
   background: rgba(255, 255, 255, 0.05) !important;
 }
