@@ -86,6 +86,11 @@ export const addNewComplaint = async (req , res)=>{
 export const assignComplaintToInvestigator = async (req , res ) =>{
     const {id , investigatorId} = req.body
     try {
+
+        if(!investigatorId){
+            return res.status(401).json({status : false , message : "* Select Valid Investigator To Proceed"})
+        }
+
         const updatedComplaint = await Complaint_Collection.findByIdAndUpdate(id , 
             {
                 assignedInvestigator : investigatorId,

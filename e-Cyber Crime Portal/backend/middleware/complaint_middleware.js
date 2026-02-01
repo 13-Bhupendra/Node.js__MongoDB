@@ -17,7 +17,7 @@ export const validateComplaintForm = (req, res, next) => {
   let isValid = true;
 
   if(!fullName || !fatherOrMotherName || !gender || !title || !description || !crimeType || 
-    !incidentDate ||  !incidentTime || !websiteOrAppName)
+    !incidentDate ||  !incidentTime || !websiteOrAppName || !amountLost)
 {
         errors.fields =  "*All fields must be required !"
         isValid = false;
@@ -79,12 +79,6 @@ export const validateComplaintForm = (req, res, next) => {
     errors.websiteOrAppName = "* Select valid website / app name";
     isValid = false;
   }
-
-  if (amountLost < 0 && amountLost > 9999999) {
-    errors.amountLost = "* Amount must be numeric and up to 7 digits";
-    isValid = false;
-  }
-
 
 if (!req.file) {
   errors.image = "* Evidence image is required";

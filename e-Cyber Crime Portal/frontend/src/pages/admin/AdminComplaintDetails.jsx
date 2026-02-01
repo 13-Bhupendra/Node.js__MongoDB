@@ -26,6 +26,7 @@ const AdminComplaintDetails = () => {
   const [complaint, setComplaint] = useState([]);
   const [investigators , setInvestigators] = useState([]);
   const [selectInvestigator , setSelectInvestigator] = useState("")
+  const [ errors , setErrors] = useState("") 
 
   // Get All complaints
   const getComplaint = async () => {
@@ -69,15 +70,14 @@ const AdminComplaintDetails = () => {
                 investigatorId : selectInvestigator
             }
         )
-
-        console.log(res.data)
-
         if(res.data.status){
             alert(res.data.message)
             window.location.reload()
         }
     } catch (error) {
-        console.log(error)
+        if(error.response?.data?.message){
+          setErrors(error.response.data.message)
+        }
     }
   }
   
@@ -310,6 +310,7 @@ const AdminComplaintDetails = () => {
                     ))
                 }
               </select>
+             {errors && <p style={{color : "red" , fontSize:"12px"}}>{errors}</p>}
             </div>
 
             <div className="modal-footer">

@@ -55,7 +55,7 @@ const DashboardCards = () => {
         <div className="statsGrid">
           <div className="statCard">
             <div className="iconWrap blue"><FaFileAlt /></div>
-            <h4>{complaints.length}</h4>
+            <h4>{complaints.length  }</h4>
             <p>Total Complaints</p>
             <span className="up">0.43% ↑</span>
           </div>
@@ -105,7 +105,7 @@ const DashboardCards = () => {
                 (complaints.length <=0 ) ?
                 <p className='ps-3 mt-5 fs-3 fw-bold' style={{color : "#1667b2"}}>No Complaint Filed Yet !</p>
               :
-                complaints.map((el)=>(
+                complaints.slice(-3).reverse().map((el)=>(
                    <tr>
                     <td>{el.complaintId}</td>
                     <td>{el.title}</td>

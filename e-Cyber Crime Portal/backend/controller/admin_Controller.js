@@ -38,3 +38,5 @@ export const updateAdminProfile = async (req ,res)=>{
         res.status(500).json({status : false , message : "Profile Updated failed !" , error : error.message});
     }
 }
+
+

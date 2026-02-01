@@ -59,7 +59,7 @@ const FileComplaint = () => {
         if(res.data.status){
           alert("Complaint Filed Successfull !")
           setFullName(""),setFatherOrMotherName(""),setGender(""),setTitle(""),setDescription("")
-          ,setCrimeType(""),setIncidentDate(""),setIncidentTime(""),setWebsiteOrAppName(""),setImage(null)
+          ,setCrimeType(""),setIncidentDate(""),setIncidentTime(""),setWebsiteOrAppName(""),setImage(null).amountLost(null)
         }
     } catch (error) {
       if(error.response?.data?.errors){
@@ -179,8 +179,8 @@ const FileComplaint = () => {
             <div className="formRow">
               <div className="formIcon"><FaDollarSign /></div>
               <div className="formContent">
-                <label>Amount Lost (optional)</label>
-                <input value={amountLost} type="number"   placeholder="Enter amount lost"  onChange={(e)=> setAmountLost(Number(e.target.value))} />
+                <label>Amount Lost</label>
+                <input value={amountLost} type="string"   placeholder="Enter amount lost"  onChange={(e)=> setAmountLost(Number(e.target.value))} />
                 {error.amountLost && <p className="mt-1" style={{color : "red" , fontSize:"12px"}}>{error.amountLost}</p>}
               </div>
             </div>
