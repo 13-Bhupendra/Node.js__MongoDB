@@ -13,7 +13,6 @@ import { MdDashboard } from "react-icons/md";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 import { PiNoteLight } from "react-icons/pi";
-import { BsCardChecklist } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { RiUserSettingsLine } from "react-icons/ri";
 import { FiClipboard } from "react-icons/fi";
@@ -59,7 +58,6 @@ const Sidebar = () => {
   const menuListInvestigator = [
     { id: 1, path: "/investigator/dashboard", text: "Dashboard", icon: <MdDashboard /> },
     { id: 2, path: "/investigator/assigned/complaints", text: "Assigned Complaints", icon: <PiNoteLight /> },
-    { id: 3, path: "/investigator/case/detail", text: "Case Details", icon: <BsCardChecklist /> },
     { id: 4, path: "/investigator/profile", text: "Profile", icon: <FaRegUser /> },
   ];
 

@@ -14,7 +14,6 @@ import MyComplaint from "../pages/user/MyComplaint.jsx";
 import UserProfile from "../pages/user/UserProfile.jsx";
 import InvestigatorLayout from "../pages/investigator/InvestigatorLayout.jsx"
 import AssignedComplaints from "../pages/investigator/AssignedComplaints.jsx"
-import CaseDetail from "../pages/investigator/CaseDetail.jsx"
 import InvestigatorDashboard from "../pages/investigator/InvestigatorDashboard.jsx"
 import AdminLayout from "../pages/admin/AdminLayout.jsx"
 import AdminDashboard from "../pages/admin/AdminDashboard.jsx";
@@ -29,6 +28,8 @@ import ChangePassword from "../pages/public/ChangePassword.jsx";
 import UserComplaintDetails from "../pages/user/UserComplaintDetails.jsx"
 import ManageComplaints from "../pages/admin/ManageComplaints.jsx";
 import AdminComplaintDetails from "../pages/admin/AdminComplaintDetails.jsx";
+import AddMember from "../pages/admin/AddMember.jsx";
+import InvestigatorComplaintDetails from "../pages/investigator/InvestigatorComplaintDetails.jsx";
 
 const AllRoutes = () => {
   const [role, setRole] = useState(undefined);
@@ -86,7 +87,7 @@ const AllRoutes = () => {
           {/* INVESTIGATOR */}
           <Route path="/investigator/*" element={role === "investigator" ? <InvestigatorLayout /> : <Navigate to="/auth/signin" />} >
             <Route path="assigned/complaints" element={<AssignedComplaints />} />
-            <Route path="case/detail" element={<CaseDetail />} />
+            <Route path="complaint/details/:id" element={<InvestigatorComplaintDetails />} />
             <Route path="dashboard" element={<InvestigatorDashboard />} />
             <Route path="profile" element={<InvestigatorProfile />} />
           </Route>
@@ -97,7 +98,8 @@ const AllRoutes = () => {
             <Route path="manage/users" element={<ManageUsers />} />
             <Route path="manage/investigators" element={<ManageInvestigators />} />
             <Route path="manage/complaints" element={<ManageComplaints />} />
-          <Route path="complaint/detail/:id" element={<AdminComplaintDetails />} />
+            <Route path="complaint/detail/:id" element={<AdminComplaintDetails />} />
+            <Route path="add/newMember" element={<AddMember />} />
             <Route path="profile" element={<AdminProfile />} />
           </Route>
 

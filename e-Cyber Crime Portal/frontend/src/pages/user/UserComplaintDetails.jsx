@@ -176,7 +176,7 @@ const UserComplaintDetails = () => {
                 <span className="noteLabel">Official Remark</span>
                 {complaint.investigatorNote ? (
                   <p className="noteText">
-                    Investigation started. Bank notified.
+                    {complaint.investigatorNote}
                   </p>
                 ) : (
                   <p className="emptyText">No official note added yet</p>

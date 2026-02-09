@@ -1,0 +1,90 @@
+.allComplaintsContainer {
+  min-height: 70vh;
+}
+
+.complaints-table {
+  background: rgba(15, 36, 54, 0.9);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.complaints-table thead {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.complaints-table th,
+.complaints-table td {
+  padding: 14px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.complaints-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.viewBtn {
+  background: transparent;
+  border: 1px solid var(--borderColor);
+  color: lightcyan;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.viewBtn:hover {
+  background: var(--borderColor);
+  color: white;
+}
+
+.iconBtn {
+  background: #0f2436;
+  border: 1px solid #1e4f7a;
+  color: #38bdf8;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.iconBtn.danger {
+  color: #f87171;
+}
+
+.adminModal {
+  background: #0f2436;
+  border-radius: 14px;
+  color: #e5f2ff;
+}
+
+.adminModal .modal-header,
+.adminModal .modal-footer {
+  border-color: #1e3a5f;
+}
+
+.modalLabel {
+  font-size: 12px;
+  color: #7dd3fc;
+}
+
+.modalInput,
+.modalSelect {
+  width: 100%;
+  padding: 8px 10px;
+  background: #091b2a;
+  border: 1px solid #1e4f7a;
+  color: #e6f1ff;
+  border-radius: 8px;
+}
+
+.modalInput:focus,
+.modalSelect:focus {
+  outline: none;
+  border-color: #38bdf8;
+}
+
+.changePassText {
+  font-size: 11px;
+  color: #94a3b8;
+}

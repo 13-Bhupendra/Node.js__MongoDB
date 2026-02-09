@@ -232,3 +232,18 @@
   outline: none;
   border-color: #38bdf8;
 }
+.noteTextarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 8px 10px;
+  background: #091b2a;
+  border: 1px solid #1e4f7a;
+  color: #e6f1ff;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.noteTextarea:focus {
+  outline: none;
+  border-color: #38bdf8;
+}

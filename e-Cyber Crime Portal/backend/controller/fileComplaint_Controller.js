@@ -103,3 +103,30 @@ export const assignComplaintToInvestigator = async (req , res ) =>{
          res.status(500).json({status : false , message : "Investigator not Assigned !"})
     }
 }
+
+
+
+/*======================= get assigned complaint for investigator ===============*/
+export const getAssignedComplaintsForInvestigator = async (req, res) => {
+  try {
+    const investigatorId = req.user._id; 
+
+    const complaints = await Complaint_Collection.find({
+      assignedInvestigator: investigatorId,
+    })
+      .populate("userId", "name email")
+      .populate("assignedInvestigator", "email");
+
+    res.status(200).json({
+      status: true,
+      message: "Assigned complaints fetched successfully",
+      complaints,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      status: false,
+      message: "Server error",
+    });
+  }
+};

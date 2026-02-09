@@ -44,3 +44,17 @@ export const validateAdminProfileForm = (req , res , next )=>{
     next()
 
 }
+
+
+// verify admin role middleware
+export const verifyAdmin = (req, res, next) => {
+    if (!req.user) {
+        return res.status(401).json({ status: false, message: "Unauthorized !" });
+    }
+
+    if (req.user.role !== "admin") {
+        return res.status(403).json({ status: false, message: "Forbidden: Admins only" });
+    }
+
+    next();
+}

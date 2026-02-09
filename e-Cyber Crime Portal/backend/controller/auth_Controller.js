@@ -12,7 +12,20 @@ export const signup = async (req ,res)=>{
         const hashedPassword = await bcrypt.hash(password , 12);
 
         const result = await Auth_Collection.create({name , email , role , password : hashedPassword});
-        await UserProfile_Collection.create({name , email , role  });
+       
+        if(role === "user"){
+             const userExists = await UserProfile_Collection.findOne({email}) ;
+            if(!userExists){
+                await UserProfile_Collection.create({name  , email , role})
+            }
+        }
+        
+        if(role === "investigator"){
+             const investigatorExists = await investigatorProfile_Collection.findOne({email}) ;
+            if(!investigatorExists){
+                await investigatorProfile_Collection.create({name , email, role})
+            }
+        }
         
         res.status(200).json({status : true , message : "User registration successfull !" ,  result});
 
@@ -42,15 +55,7 @@ export const signin = async (req ,res)=>{
                 await adminProfile_Collection.create({name : user.name , email : user.email , role : user.role})
             }
         }
-
-        if(user.role === "investigator"){
-             const investigatorExists = await investigatorProfile_Collection.findOne({email}) ;
-            if(!investigatorExists){
-                await investigatorProfile_Collection.create({name : user.name , email : user.email , role : user.role})
-            }
-        }
-
-
+        
         const isOtpSent = await otpSender(email)
         if(!isOtpSent.status){
                 return res.status(500).json({otpResult})

@@ -242,7 +242,7 @@ const AdminComplaintDetails = () => {
 
                 {complaint.investigatorNote ? (
                   <p className="noteText">
-                    Investigation started. Bank notified.
+                      {complaint.investigatorNote}
                   </p>
                 ) : (
                   <p className="emptyText">

@@ -51,3 +51,35 @@ export const validateUserProfileForm = (req, res, next) => {
 
   next();
 };
+
+
+
+// ========================middlewares/validateEditUser.js=======================
+export const validateEditUser = (req, res, next) => {
+  const { name, email } = req.body;
+
+  let errors = {};
+  let isValid = true;
+
+  const nameRegex = /^[A-Za-z\s]{3,}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  if (!name || !nameRegex.test(name)) {
+    errors.name = "*Name must be minimum 3 letters";
+    isValid = false;
+  }
+
+  if (!email || !emailRegex.test(email)) {
+    errors.email = "*Please enter a valid email address";
+    isValid = false;
+  }
+
+  if (!isValid) {
+    return res.status(400).json({
+      status: false,
+      errors,
+    });
+  }
+
+  next();
+};

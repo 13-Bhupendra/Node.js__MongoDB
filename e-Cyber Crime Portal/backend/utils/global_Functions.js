@@ -20,3 +20,11 @@
 //         return finalCode
 //     }
   
+
+
+
+// get investigator and users from authCollection   -> done in investigator and user controller add routes
+// add investigator and user -> done in admin controller and admin routes 
+// edit investigator and user controller -> done in admin_controllers and add routes in admin routes
+// remove investigator and user controller ->  done in admin_controllers and add routes in admin routes
+
